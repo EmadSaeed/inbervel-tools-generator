@@ -16,9 +16,16 @@ export async function POST(req: NextRequest) {
     }
 
     const html = await renderInvoiceTemplate(parsed.data);
-    const pdfBuffer = await htmlToPdfBuffer(html);
+    const pdfBuffer = await htmlToPdfBuffer(html); // Buffer
 
-    return new Response(new Uint8Array(pdfBuffer), {
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(new Uint8Array(pdfBuffer));
+        controller.close();
+      },
+    });
+
+    return new Response(stream, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
