@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import Handlebars from "handlebars";
 
-export async function renderInvoiceTemplate(data: any): Promise<string> {
+export async function renderInvoiceTemplate(data: Record<string, unknown>): Promise<string> {
   const templatesDir = path.join(process.cwd(), "templates");
 
   const [hbs, css] = await Promise.all([
