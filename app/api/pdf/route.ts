@@ -16,8 +16,9 @@ export async function POST(req: NextRequest) {
     }
 
     const html = await renderInvoiceTemplate(parsed.data);
-    const pdfBuffer = await htmlToPdfBuffer(html); // Buffer
+    const pdfBuffer = await htmlToPdfBuffer(html); // should be Buffer (or Uint8Array)
 
+    // Stream the PDF bytes so TypeScript accepts it as BodyInit
     const stream = new ReadableStream<Uint8Array>({
       start(controller) {
         controller.enqueue(new Uint8Array(pdfBuffer));
@@ -30,6 +31,8 @@ export async function POST(req: NextRequest) {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": 'inline; filename="invoice.pdf"',
+        // If you want download instead of opening in browser:
+        // "Content-Disposition": 'attachment; filename="invoice.pdf"',
       },
     });
   } catch (err: unknown) {
