@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     const html = await renderInvoiceTemplate(parsed.data);
     const pdfBuffer = await htmlToPdfBuffer(html); // should be Buffer (or Uint8Array)
 
-    // Stream the PDF bytes so TypeScript accepts it as BodyInit
+    // Stream the PDF bytes so TypeScript accepts it as BodyInit - this is important
     const stream = new ReadableStream<Uint8Array>({
       start(controller) {
         controller.enqueue(new Uint8Array(pdfBuffer));
