@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Invoice {{invoiceNumber}}</title>
+    <style>{{{css}}}</style>
+  </head>
+  <body>
+    <h1>Invoice {{invoiceNumber}}</h1>
+    <p><strong>Date:</strong> {{invoiceDate}}</p>
+
+    <h2>Customer</h2>
+    <p>{{customer.name}}</p>
+    <p>{{customer.email}}</p>
+
+    <h2>Items</h2>
+    <ul>
+      {{#each items}}
+        <li>{{description}} — Qty: {{qty}} — {{lineTotal}}</li>
+      {{/each}}
+    </ul>
+
+    <h2>Total: {{total}}</h2>
+  </body>
+</html>
