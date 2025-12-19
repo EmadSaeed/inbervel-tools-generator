@@ -3,7 +3,7 @@ import { invoiceSchema } from "./schema";
 import { renderInvoiceTemplate } from "@/lib/pdf/renderTemplate";
 import { htmlToPdfBuffer } from "@/lib/pdf/generatePdf";
 
-export const runtime = "nodejs"; // IMPORTANT for Puppeteer
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
@@ -18,20 +18,15 @@ export async function POST(req: NextRequest) {
     const html = await renderInvoiceTemplate(parsed.data);
     const pdfBuffer = await htmlToPdfBuffer(html);
 
-    return new Response(
-      new Blob([new Uint8Array(pdfBuffer)], { type: "application/pdf" }),
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/pdf",
-          "Content-Disposition": 'inline; filename="invoice.pdf"',
-        },
-      }
-    );
+    return new Response(new Uint8Array(pdfBuffer), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": 'inline; filename="invoice.pdf"',
+      },
+    });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : "Unknown error";
-    return new Response(`Error: ${errorMessage}`, {
-      status: 500,
-    });
+    return new Response(`Error: ${errorMessage}`, { status: 500 });
   }
 }
