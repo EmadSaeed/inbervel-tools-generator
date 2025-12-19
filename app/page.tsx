@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main style={{ padding: 24 }}>
       <h1>PDF Generator</h1>
-      <button onClick={generatePdf}>Generate Invoice PDF</button>
+      <button onClick={generatePdf}>Generate Invoice PDFs</button>
     </main>
   );
 }
