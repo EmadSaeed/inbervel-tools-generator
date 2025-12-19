@@ -28,8 +28,9 @@ export async function POST(req: NextRequest) {
         },
       }
     );
-  } catch (err: any) {
-    return new Response(`Error: ${err?.message ?? "Unknown error"}`, {
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    return new Response(`Error: ${errorMessage}`, {
       status: 500,
     });
   }

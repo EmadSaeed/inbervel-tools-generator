@@ -1,12 +1,24 @@
-import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 
+const isVercel = !!process.env.VERCEL;
+
 export async function htmlToPdfBuffer(html: string) {
+  const puppeteer = isVercel
+    ? await import("puppeteer-core")
+    : await import("puppeteer");
+
   const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
-    headless: chromium.headless,
+    // On Vercel: use Sparticuz chromium settings
+    ...(isVercel
+      ? {
+          args: chromium.args,
+          executablePath: await chromium.executablePath(),
+          headless: true,
+        }
+      : {
+          // Locally: let puppeteer use its bundled Chromium
+          headless: true,
+        }),
   });
 
   try {
