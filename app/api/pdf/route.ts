@@ -18,13 +18,16 @@ export async function POST(req: NextRequest) {
     const html = await renderInvoiceTemplate(parsed.data);
     const pdfBuffer = await htmlToPdfBuffer(html);
 
-    return new Response(pdfBuffer, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": 'inline; filename="invoice.pdf"',
-      },
-    });
+    return new Response(
+      new Blob([new Uint8Array(pdfBuffer)], { type: "application/pdf" }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/pdf",
+          "Content-Disposition": 'inline; filename="invoice.pdf"',
+        },
+      }
+    );
   } catch (err: any) {
     return new Response(`Error: ${err?.message ?? "Unknown error"}`, {
       status: 500,
