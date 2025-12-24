@@ -3,6 +3,17 @@
     margin: 20mm 15mm;
 }
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Figtree', Helvetica, Arial, sans-serif;
+}
+
+.page {
+    padding: 0;
+    /* page margin is handled by @page */
+}
 
 .label,
 .metaLabel,

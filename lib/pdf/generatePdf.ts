@@ -49,8 +49,8 @@ export async function htmlToPdfBuffer(html: string): Promise<Buffer> {
 
       const pdf = await page.pdf({
         format: "A4",
-        printBackground: true,
         preferCSSPageSize: true,
+        margin: { top: "20mm", right: "15mm", bottom: "20mm", left: "15mm" },
       });
 
       return Buffer.from(pdf);
@@ -70,8 +70,8 @@ export async function htmlToPdfBuffer(html: string): Promise<Buffer> {
 
     const pdf = await page.pdf({
       format: "A4",
-      printBackground: true,
       preferCSSPageSize: true,
+      margin: { top: "20mm", right: "15mm", bottom: "20mm", left: "15mm" },
     });
 
     return Buffer.from(pdf);

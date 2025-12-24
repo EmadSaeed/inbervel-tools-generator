@@ -7,88 +7,89 @@
 
   <body>
     <!-- Top header (CONTACT / ADDRESS) -->
+    <div class="page">
+      <div class="h-block">
 
-    <div class="h-block">
+      </div>
 
+      <section class="logo">
+        <img src="{{logoUrl}}" alt="Company Logo" />
+      </section>
+
+      <section class="header">
+        <div class="block">
+          <div class="label">CONTACT</div>
+          <div class="value">
+            <div>P : {{contact.phone}}</div>
+            <div>E : {{contact.email}}</div>
+            <div>{{contact.website}}</div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="label">ADDRESS</div>
+          <div class="value">
+            <div>{{address.line1}}</div>
+            <div>{{address.line2}}</div>
+            <div>{{address.country}}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hero title -->
+      <section class="hero">
+        <div class="tagline">CREATIVITY</div>
+        <h1 class="heroTitle">
+          {{planTitleLine1}}<br />
+          {{planTitleLine2}}
+        </h1>
+        <h2 class="heroSub">{{agencyName}}</h2>
+        <p class="heroIntro">{{introText}}</p>
+      </section>
+
+      <!-- Meta row (DATE ISSUED / DATE CREATED / SUPERVISOR) -->
+      <section class="meta">
+        <div class="metaItem">
+          <div class="metaLabel">DATE ISSUED</div>
+          <div class="metaValue">{{dates.issued}}</div>
+        </div>
+        <div class="metaItem">
+          <div class="metaLabel">DATE CREATED</div>
+          <div class="metaValue">{{dates.created}}</div>
+        </div>
+        <div class="metaItem">
+          <div class="metaLabel">SUPERVISOR</div>
+          <div class="metaValue">{{supervisor}}</div>
+        </div>
+      </section>
+
+      <!-- Sections -->
+      <section class="content">
+        <h3 class="sectionTitle">Business Description</h3>
+        {{#each businessDescription}}
+          <p class="para">{{this}}</p>
+        {{/each}}
+
+        <h3 class="sectionTitle">BUSINESS MAIN IDEA</h3>
+        {{#each businessMainIdea}}
+          <p class="para">{{this}}</p>
+        {{/each}}
+
+        <div class="twoCol">
+          <div>
+            <h3 class="sectionTitle">LOCATION</h3>
+            {{#each location}}
+              <p class="para">{{this}}</p>
+            {{/each}}
+          </div>
+          <div>
+            <h3 class="sectionTitle">GOVERNMENT REGULATION</h3>
+            {{#each governmentRegulation}}
+              <p class="para">{{this}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </section>
     </div>
-
-    <section class="logo">
-      <img src="{{logoUrl}}" alt="Company Logo" />
-    </section>
-
-    <section class="header">
-      <div class="block">
-        <div class="label">CONTACT</div>
-        <div class="value">
-          <div>P : {{contact.phone}}</div>
-          <div>E : {{contact.email}}</div>
-          <div>{{contact.website}}</div>
-        </div>
-      </div>
-
-      <div class="block">
-        <div class="label">ADDRESS</div>
-        <div class="value">
-          <div>{{address.line1}}</div>
-          <div>{{address.line2}}</div>
-          <div>{{address.country}}</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hero title -->
-    <section class="hero">
-      <div class="tagline">CREATIVITY</div>
-      <h1 class="heroTitle">
-        {{planTitleLine1}}<br />
-        {{planTitleLine2}}
-      </h1>
-      <h2 class="heroSub">{{agencyName}}</h2>
-      <p class="heroIntro">{{introText}}</p>
-    </section>
-
-    <!-- Meta row (DATE ISSUED / DATE CREATED / SUPERVISOR) -->
-    <section class="meta">
-      <div class="metaItem">
-        <div class="metaLabel">DATE ISSUED</div>
-        <div class="metaValue">{{dates.issued}}</div>
-      </div>
-      <div class="metaItem">
-        <div class="metaLabel">DATE CREATED</div>
-        <div class="metaValue">{{dates.created}}</div>
-      </div>
-      <div class="metaItem">
-        <div class="metaLabel">SUPERVISOR</div>
-        <div class="metaValue">{{supervisor}}</div>
-      </div>
-    </section>
-
-    <!-- Sections -->
-    <section class="content">
-      <h3 class="sectionTitle">Business Description</h3>
-      {{#each businessDescription}}
-        <p class="para">{{this}}</p>
-      {{/each}}
-
-      <h3 class="sectionTitle">BUSINESS MAIN IDEA</h3>
-      {{#each businessMainIdea}}
-        <p class="para">{{this}}</p>
-      {{/each}}
-
-      <div class="twoCol">
-        <div>
-          <h3 class="sectionTitle">LOCATION</h3>
-          {{#each location}}
-            <p class="para">{{this}}</p>
-          {{/each}}
-        </div>
-        <div>
-          <h3 class="sectionTitle">GOVERNMENT REGULATION</h3>
-          {{#each governmentRegulation}}
-            <p class="para">{{this}}</p>
-          {{/each}}
-        </div>
-      </div>
-    </section>
   </body>
 </html>
