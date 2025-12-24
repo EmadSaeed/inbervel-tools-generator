@@ -1,3 +1,9 @@
+@page {
+    size: A4;
+    margin: 20mm 15mm;
+}
+
+
 .label,
 .metaLabel,
 .sectionTitle {
