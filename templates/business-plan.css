@@ -1,6 +1,12 @@
 @page {
     size: A4;
-    margin: 70mm 15mm;
+    margin: 20mm 15mm;
+}
+
+
+:root {
+    --dark-green: #0C2218;
+    --light-green: #A6FE84;
 }
 
 html,
@@ -20,80 +26,85 @@ body {
     box-sizing: border-box;
 }
 
-.label,
-.metaLabel,
-.sectionTitle {
-    letter-spacing: 1px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
 
-.header .block {
-    width: 48%;
-}
+/* Cover Page */
 
-.header .label {
-    margin-bottom: 10px;
-    font-size: 13px;
-}
-
-.header .value {
-    font-size: 12px;
-}
-
-.hero {
-    text-align: center;
-    margin: 30px 0 35px;
-}
-
-.tagline {
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-}
-
-.heroTitle {
-    font-size: 44px;
-    margin: 0;
-    line-height: 1.05;
-}
-
-.heroSub {
-    font-size: 14px;
-    letter-spacing: 4px;
-    margin: 18px 0 0;
-}
-
-.heroIntro {
-    margin: 18px auto 0;
-    max-width: 720px;
-}
-
-.meta {
+.coverHead {
+    margin-top: 7mm;
     display: flex;
     justify-content: space-between;
-    margin: 35px 0 35px;
+    align-items: center;
+    height: 20mm;
+    text-align: center;
 }
 
-.metaItem {
-    width: 32%;
+.coverLogo img {
+    max-height: 20mm;
+    padding-left: 10mm;
 }
 
-.metaValue {
-    margin-top: 6px;
+.website {
+    font-size: 14px;
+    border-left: 1px solid #333;
+    padding-top: 7mm;
+    padding-left: 6mm;
+    height: 12mm;
+    width: 28%;
+    text-align: left;
 }
 
-.twoCol {
-    display: flex;
-    gap: 28px;
-}
-
-.twoCol>div {
-    width: 50%;
-}
-
-.h-block {
-    height: 100px;
+.coverTitleBlock {
+    background-color: var(--light-green);
+    height: 75mm;
     width: 100%;
-    background-color: blueviolet;
+    margin-top: 7mm;
+    margin-bottom: 0 !important;
+}
+
+.coverTitle {
+    font-size: 90px;
+    font-weight: 700;
+    color: var(--dark-green);
+    text-align: left;
+    padding-top: 15mm;
+    padding-left: 15mm;
+    margin-bottom: 0 !important;
+}
+
+.dateBlock {
+    background-color: var(--light-green);
+    height: 50mm;
+    width: 100%;
+    margin-top: 0 !important;
+    position: relative;
+}
+
+.coverDate {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark-green);
+    text-align: left;
+    padding-top: 10mm;
+    padding-left: 15mm;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.triangle {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 0 50mm 38mm;
+    border-color: transparent transparent #dbdbdb transparent;
+    transform: rotate(0deg);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.grayBlock {
+    background-color: #dbdbdb;
+    height: 32mm;
+    width: 100%;
+    margin-top: 0 !important;
 }

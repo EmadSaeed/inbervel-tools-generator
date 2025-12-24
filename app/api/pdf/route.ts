@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'inline; filename="business-plan.pdf"',
+        "Content-Disposition": 'attachment; filename="business-plan.pdf"',
       },
     });
   } catch (err: unknown) {

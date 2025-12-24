@@ -28,9 +28,7 @@ async function resolveChromiumExecutablePath(): Promise<string> {
   throw new Error("No Chromium pack URL configured.");
 }
 
-function buildPdfOptions(title?: string) {
-  const safeTitle = escapeHtml(title ?? "");
-
+function buildPdfOptions() {
   return {
     printBackground: true,
     preferCSSPageSize: true,
@@ -39,32 +37,33 @@ function buildPdfOptions(title?: string) {
     headerTemplate: `
       <div style="
         width: 100%;
-        font-size: 9px;
-        padding: 0 15mm;
+        font-family: Figtree, opensans, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5mm 20mm;
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         align-items: center;
       ">
-        <div>${safeTitle}</div>
-        <div style="opacity: 0.7;">${new Date().toLocaleDateString(
-          "en-GB"
-        )}</div>
+        <div style="opacity: 0.4;">Business Plan</div>
+        <div style="opacity: 0.4;">Company Ltd – Bird & Pest Management</div>
       </div>
     `,
 
     footerTemplate: `
       <div style="
         width: 100%;
-        font-size: 9px;
-        padding: 0 15mm;
+        font-family: Figtree, opensans, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5mm 20mm;
         box-sizing: border-box;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: flex-end;
+        align-items: right;
       ">
-        <div style="opacity: 0.7;">IPEX SOFT</div>
-        <div style="opacity: 0.7;">
+        <div style="opacity: 0.4;">
           Page <span class="pageNumber"></span> of <span class="totalPages"></span>
         </div>
       </div>
@@ -74,13 +73,9 @@ function buildPdfOptions(title?: string) {
 
 /**
  * Convert HTML to PDF.
- * Pass a title if you want it in the header.
  */
-export async function htmlToPdfBuffer(
-  html: string,
-  opts?: { title?: string }
-): Promise<Buffer> {
-  const pdfOptions = buildPdfOptions(opts?.title);
+export async function htmlToPdfBuffer(html: string): Promise<Buffer> {
+  const pdfOptions = buildPdfOptions();
 
   if (isVercel) {
     const puppeteer = await import("puppeteer-core");

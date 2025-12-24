@@ -17,7 +17,13 @@ export default function Home() {
 
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
-    window.open(url, "_blank");
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "business-plan.pdf"; // forces download
+    a.click();
+
+    setTimeout(() => URL.revokeObjectURL(url), 30_000);
   }
 
   return (
