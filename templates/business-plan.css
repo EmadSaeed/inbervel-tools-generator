@@ -1,6 +1,6 @@
 @page {
     size: A4;
-    margin: 20mm 15mm;
+    margin: 70mm 15mm;
 }
 
 html,
@@ -8,6 +8,11 @@ body {
     margin: 0;
     padding: 0;
     font-family: Figtree, opensans, Arial, Helvetica, sans-serif;
+}
+
+.page-break {
+    break-before: page;
+    page-break-before: always;
 }
 
 .page {
