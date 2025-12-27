@@ -1,0 +1,31 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model CognitoSubmission {
+    id String @id @default(cuid())
+
+    // Your required columns
+    formId    String
+    formTitle String?
+    firstName String?
+    lastName  String?
+    userEmail String
+
+    payload Json
+
+    // Dates coming from Cognito payload
+    entryCreatedAt DateTime?
+    entryUpdatedAt DateTime?
+
+    // Audit dates in your DB
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([formId, userEmail])
+}
