@@ -2,15 +2,6 @@ import chromium from "@sparticuz/chromium-min";
 
 const isVercel = !!process.env.VERCEL;
 
-function escapeHtml(input: string) {
-  return input
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
 async function resolveChromiumExecutablePath(): Promise<string> {
   const primary = process.env.CHROMIUM_BLOB_PACK_URL;
   const secondary = process.env.CHROMIUM_GITHUB_PACK_URL;
@@ -40,7 +31,7 @@ function buildPdfOptions() {
         font-family: Figtree, opensans, Arial, Helvetica, sans-serif;
         font-size: 12px;
         font-weight: 600;
-        padding: 5mm 20mm;
+        padding: 0mm 20mm;
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;
