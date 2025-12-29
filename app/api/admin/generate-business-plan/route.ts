@@ -41,9 +41,9 @@ export async function POST(req: NextRequest) {
     } as any;
 
     const html = await renderBusinessPlanTemplate(dto);
-    const pdf = await htmlToPdfBuffer(html, { title: "Business Plan" });
+    const pdfBuffer = await htmlToPdfBuffer(html, { title: "Business Plan" });
 
-    return new Response(pdf, {
+    return new Response(new Uint8Array(pdfBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
