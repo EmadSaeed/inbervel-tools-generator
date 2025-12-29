@@ -1,6 +1,22 @@
+// lib/pdf/generatePdf.ts
+
 import chromium from "@sparticuz/chromium-min";
 
 const isVercel = !!process.env.VERCEL;
+
+type PdfOptions = {
+  title?: string;
+  subtitle?: string;
+};
+
+function escapeHtml(input: string) {
+  return input
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 async function resolveChromiumExecutablePath(): Promise<string> {
   const primary = process.env.CHROMIUM_BLOB_PACK_URL;
@@ -19,40 +35,51 @@ async function resolveChromiumExecutablePath(): Promise<string> {
   throw new Error("No Chromium pack URL configured.");
 }
 
-function buildPdfOptions() {
+function buildPdfOptions(opts?: PdfOptions) {
+  const title = escapeHtml(opts?.title ?? "Business Plan");
+  const subtitle = escapeHtml(opts?.subtitle ?? "");
+
   return {
     printBackground: true,
     preferCSSPageSize: true,
     displayHeaderFooter: true,
 
+    // Make space for header/footer and enforce consistent margins across environments
+    margin: {
+      top: "25mm",
+      right: "15mm",
+      bottom: "20mm",
+      left: "15mm",
+    },
+
     headerTemplate: `
       <div style="
         width: 100%;
-        font-family: Figtree, opensans, Arial, Helvetica, sans-serif;
+        font-family: Figtree, Open Sans, Arial, Helvetica, sans-serif;
         font-size: 12px;
         font-weight: 600;
-        padding: 0mm 20mm;
+        padding: 0mm 15mm;
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         align-items: center;
       ">
-        <div style="opacity: 0.4;">Business Plan</div>
-        <div style="opacity: 0.4;">Company Ltd – Bird & Pest Management</div>
+        <div style="opacity: 0.4;">${title}</div>
+        <div style="opacity: 0.4;">${subtitle}</div>
       </div>
     `,
 
     footerTemplate: `
       <div style="
         width: 100%;
-        font-family: Figtree, opensans, Arial, Helvetica, sans-serif;
+        font-family: Figtree, Open Sans, Arial, Helvetica, sans-serif;
         font-size: 12px;
         font-weight: 600;
-        padding: 5mm 20mm;
+        padding: 0mm 15mm;
         box-sizing: border-box;
         display: flex;
         justify-content: flex-end;
-        align-items: right;
+        align-items: center;
       ">
         <div style="opacity: 0.4;">
           Page <span class="pageNumber"></span> of <span class="totalPages"></span>
@@ -64,9 +91,14 @@ function buildPdfOptions() {
 
 /**
  * Convert HTML to PDF.
+ * - Vercel: puppeteer-core + sparticuz chromium pack
+ * - Local: puppeteer (bundled Chromium)
  */
-export async function htmlToPdfBuffer(html: string): Promise<Buffer> {
-  const pdfOptions = buildPdfOptions();
+export async function htmlToPdfBuffer(
+  html: string,
+  opts?: PdfOptions
+): Promise<Buffer> {
+  const pdfOptions = buildPdfOptions(opts);
 
   if (isVercel) {
     const puppeteer = await import("puppeteer-core");
