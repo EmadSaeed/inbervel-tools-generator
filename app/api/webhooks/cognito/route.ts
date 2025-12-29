@@ -5,6 +5,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
+  console.log("WEBHOOK ROUTE HIT (local):", new Date().toISOString());
+
   try {
     const token = req.nextUrl.searchParams.get("token");
     if (!token || token !== process.env.COGNITO_WEBHOOK_TOKEN) {

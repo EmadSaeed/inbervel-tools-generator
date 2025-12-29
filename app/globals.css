@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --dark-green: #0C2218;
+  --light-green: #A6FE84;
 }
 
 @theme inline {
@@ -23,4 +25,27 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+main button {
+  all: unset;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--dark-green);
+  color: var(--light-green);
+  transition: var(--dark-green) 0.3s, color 0.3s;
+}
+
+main button:hover {
+  background-color: var(--light-green);
+  color: var(--dark-green);
+}
+
+main .userEmail {
+  all: unset;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--dark-green);
+  border-radius: 0.375rem;
+  margin-right: 1rem;
 }

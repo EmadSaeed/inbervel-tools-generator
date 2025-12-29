@@ -8,24 +8,19 @@ datasource db {
 }
 
 model CognitoSubmission {
-    id String @id @default(cuid())
-
-    // Your required columns
-    formId    String
-    formTitle String?
-    firstName String?
-    lastName  String?
-    userEmail String
-
-    payload Json
-
-    // Dates coming from Cognito payload
+    id             String    @id @default(cuid())
+    formId         String
+    formTitle      String?
+    firstName      String?
+    lastName       String?
+    companyName    String?
+    userEmail      String
+    payload        Json
     entryCreatedAt DateTime?
     entryUpdatedAt DateTime?
-
-    // Audit dates in your DB
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt      DateTime  @default(now())
+    updatedAt      DateTime  @updatedAt
 
     @@unique([formId, userEmail])
+    @@index([userEmail])
 }

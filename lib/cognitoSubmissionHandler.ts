@@ -12,6 +12,7 @@ function extractFromCognito(payload: any) {
 
   const firstName = payload?.Name?.First ? String(payload.Name.First) : null;
   const lastName = payload?.Name?.Last ? String(payload.Name.Last) : null;
+  const companyName = payload?.CompanyName ? String(payload.CompanyName) : null;
 
   const userEmail = payload?.Email ? String(payload.Email).toLowerCase() : "";
 
@@ -26,6 +27,7 @@ function extractFromCognito(payload: any) {
     formTitle,
     firstName,
     lastName,
+    companyName,
     userEmail,
     entryCreatedAt,
     entryUpdatedAt,
@@ -34,6 +36,9 @@ function extractFromCognito(payload: any) {
 
 export async function cognitoSubmissionHandler(payload: any) {
   const data = extractFromCognito(payload);
+
+  console.log("Incoming CompanyName:", payload?.CompanyName);
+  console.log("Extracted companyName:", data.companyName);
 
   // optional: log minimal info
   console.log("Cognito webhook:", {
@@ -51,6 +56,7 @@ export async function cognitoSubmissionHandler(payload: any) {
       formTitle: data.formTitle,
       firstName: data.firstName,
       lastName: data.lastName,
+      companyName: data.companyName,
       userEmail: data.userEmail,
       entryCreatedAt: data.entryCreatedAt,
       entryUpdatedAt: data.entryUpdatedAt,
@@ -60,9 +66,19 @@ export async function cognitoSubmissionHandler(payload: any) {
       formTitle: data.formTitle,
       firstName: data.firstName,
       lastName: data.lastName,
+      companyName: data.companyName,
       entryCreatedAt: data.entryCreatedAt,
       entryUpdatedAt: data.entryUpdatedAt,
       payload,
     },
   });
+
+  const saved = await prisma.cognitoSubmission.findUnique({
+    where: {
+      formId_userEmail: { formId: data.formId, userEmail: data.userEmail },
+    },
+    select: { companyName: true, updatedAt: true },
+  });
+
+  console.log("Saved companyName:", saved);
 }
