@@ -80,7 +80,8 @@ export default function Home() {
         ))}
       </ul>
 
-      <button onClick={generatePdf} disabled={!allRequiredSubmitted || !email}>
+      {/* <button onClick={generatePdf} disabled={!allRequiredSubmitted || !email}> */}
+      <button onClick={generatePdf} >
         Generate Business Plan PDF
       </button>
 

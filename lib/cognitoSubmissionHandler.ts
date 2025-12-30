@@ -37,9 +37,6 @@ function extractFromCognito(payload: any) {
 export async function cognitoSubmissionHandler(payload: any) {
   const data = extractFromCognito(payload);
 
-  console.log("Incoming CompanyName:", payload?.CompanyName);
-  console.log("Extracted companyName:", data.companyName);
-
   // optional: log minimal info
   console.log("Cognito webhook:", {
     formId: data.formId,
@@ -72,13 +69,4 @@ export async function cognitoSubmissionHandler(payload: any) {
       payload,
     },
   });
-
-  const saved = await prisma.cognitoSubmission.findUnique({
-    where: {
-      formId_userEmail: { formId: data.formId, userEmail: data.userEmail },
-    },
-    select: { companyName: true, updatedAt: true },
-  });
-
-  console.log("Saved companyName:", saved);
 }
