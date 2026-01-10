@@ -41,18 +41,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Copy so we can safely mutate logoUrl
-    const data = { ...parsed.data };
-
-    // If the logoUrl is a public path ("/..."), inline it as base64
-    if (
-      data.logoUrl &&
-      typeof data.logoUrl === "string" &&
-      data.logoUrl.startsWith("/")
-    ) {
-      data.logoUrl = await publicFileToDataUrl(data.logoUrl);
-    }
-
+    const data = parsed.data;
     const html = await renderBusinessPlanTemplate(data);
     const pdfBuffer = await htmlToPdfBuffer(html);
 

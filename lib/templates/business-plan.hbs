@@ -1,0 +1,1348 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{planTitle}}</title>
+    <style>{{{css}}}</style>
+  </head>
+
+  <body>
+    {{!***********************************************************************************************
+**************************************** Cover Page **************************************************
+****************************************************************************************************}}
+
+    <div class="page coverHead">
+      <div class="coverLogo">
+        <img src="{{final.CompanyLogo.0.File}}" alt="Company Logo" />
+      </div>
+      <div class="website">{{final.CompanyWebsite}}</div>
+
+    </div>
+
+    <div class="coverTitleBlock">
+      <h1 class="coverTitle">Business<br />Plan</h1>
+    </div>
+    <div class="dateBlock">
+      <h3 class="coverDate">
+        {{formatDate final.Entry.DateCreated "MMMM yyyy"}}
+      </h3>
+      <div class="triangle"></div>
+    </div>
+    <div class="grayBlock"></div>
+    <div class="whiteBlock">
+      <div class="infoBlock">
+        <div class="infoLabel">PREPARED BY</div>
+        <div class="infoValue">{{final.Name.FirstAndLast}}</div>
+      </div>
+      <div class="infoBlock">
+        <div class="infoLabel">TITLE</div>
+        <div class="infoValue">{{final.Title}}</div>
+      </div>
+      <div class="infoBlock">
+        <div class="infoLabel">EMAIL</div>
+        <div class="infoValue">{{final.Email}}</div>
+      </div>
+      <div class="infoBlock">
+        <div class="infoLabel">PHONE</div>
+        <div class="infoValue">{{final.Phone}}</div>
+      </div>
+    </div>
+    <div class="secondGrayBlock"></div>
+    <div class="ConfidentialityBlock">
+      <h4 class="ConfidentialityTitle">Confidentiality Statement</h4>
+      <p>This business plan contains confidential and proprietary information
+        belonging to Bird and Pest Management Ltd. It is intended solely for
+        review by authorised individuals. No part of this document may be
+        reproduced or distributed without prior written permission from the
+        owner.</p>
+    </div>
+
+    <div class="page-break"></div>
+
+    {{!***********************************************************************************************
+**************************************** Our Business ************************************************
+****************************************************************************************************}}
+    <div class="page pages">
+      <h2>Our Business</h2>
+      <p>{{final._1TheBusiness}}</p>
+      <h2>Our lead offerings</h2>
+      <p>{{final._2OurPrimaryOfferings}}</p>
+    </div>
+
+    <table class="priority-table" aria-label="Our Lead Offerings Priority List">
+      <colgroup>
+        <col class="col-priority" />
+        <col class="col-offering" />
+      </colgroup>
+
+      <thead>
+        <tr class="title-row">
+          <th colspan="2">OUR LEAD OFFERINGS PRIORITY LIST</th>
+        </tr>
+        <tr class="col-head">
+          <th>PRIORITY</th>
+          <th>LEAD OFFERING</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="priority">1</td>
+          <td
+            class="offering"
+          >{{offerings.YourOfferings.Results._1Offering}}</td>
+        </tr>
+        <tr>
+          <td class="priority">2</td>
+          <td
+            class="offering"
+          >{{offerings.YourOfferings.Results._2Offering}}</td>
+        </tr>
+        <tr>
+          <td class="priority">3</td>
+          <td
+            class="offering"
+          >{{offerings.YourOfferings.Results._3Offering}}</td>
+        </tr>
+        <tr>
+          <td class="priority">4</td>
+          <td
+            class="offering"
+          >{{offerings.YourOfferings.Results._4Offering}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+    {{!**********************************************************************************************
+**************************************** Our Edge ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <h2>Our Edge</h2>
+      <p><strong>We have an Edge, this is why we are different</strong><br />
+        {{final._3WeHaveAnEdgeThisIsWhyWeAreDifferent}}
+      </p>
+      <br />
+      <table id="edge-table">
+        <thead>
+          <tr>
+            <th>Offering</th>
+            <th>Value to the Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{advantage.YourCompetitiveAdvantageOffering1}}</td>
+            <td>{{advantage.TheValueToTheClientOffering1}}</td>
+          </tr>
+          <tr>
+            <td>{{advantage.YourCompetitiveAdvantageOffering2}}</td>
+            <td>{{advantage.TheValueToTheClientOffering2}}</td>
+          </tr>
+          <tr>
+            <td>{{advantage.YourCompetitiveAdvantageOffering3}}</td>
+            <td>{{advantage.TheValueToTheClientOffering3}}</td>
+          </tr>
+          <tr>
+            <td>{{advantage.YourCompetitiveAdvantageOffering4}}</td>
+            <td>{{advantage.TheValueToTheClientOffering4}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** Target Clients *********************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <h2>Target Clients</h2>
+
+      <table id="sector-table">
+        <!-- Fixed column widths -->
+        <colgroup>
+          <col style="width: 14%;" />
+          <col style="width: 26%;" />
+          <col style="width: 17%;" />
+          <col style="width: 33%;" />
+          <col style="width: 10%;" />
+        </colgroup>
+
+        <thead>
+          <tr class="title-row">
+            <th colspan="5">
+              MARKETS WE INTEND TO TARGET FOR<br />MAXIMUM RETURN
+            </th>
+          </tr>
+          <tr class="header-row">
+            <th>PRIORITY</th>
+            <th>SECTOR/CLIENT<br />TYPE</th>
+            <th>COMPANIES</th>
+            <th>MY OFFERINGS TO<br />PROMOTE THEM</th>
+            <th>FOCUS<br />SCORE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr><td class="priority">1</td><td
+            >{{sectors.Results._1Sector}}</td><td
+            >{{sectors.Results._1Companies}}</td><td
+            >{{sectors.Results._1Offerings}}</td><td
+            >{{sectors.Results._1Score}}</td></tr>
+          <tr><td class="priority">2</td><td
+            >{{sectors.Results._2Sector}}</td><td
+            >{{sectors.Results._2Companies}}</td><td
+            >{{sectors.Results._2Offerings}}</td><td
+            >{{sectors.Results._2Score}}</td></tr>
+          <tr><td class="priority">3</td><td
+            >{{sectors.Results._3Sector}}</td><td
+            >{{sectors.Results._3Companies}}</td><td
+            >{{sectors.Results._3Offerings}}</td><td
+            >{{sectors.Results._3Score}}</td></tr>
+          <tr><td class="priority">4</td><td
+            >{{sectors.Results._4Sector}}</td><td
+            >{{sectors.Results._4Companies}}</td><td
+            >{{sectors.Results._4Offerings}}</td><td
+            >{{sectors.Results._4Score}}</td></tr>
+          <tr><td class="priority">5</td><td
+            >{{sectors.Results._5Sector}}</td><td
+            >{{sectors.Results._5Companies}}</td><td
+            >{{sectors.Results._5Offerings}}</td><td
+            >{{sectors.Results._5Score}}</td></tr>
+        </tbody>
+      </table>
+      <br />
+      <p>{{final._4TargetClients}}
+      </p>
+
+    </div>
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** Our Brand *********************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+      <h2>Our Brand</h2>
+      <h3 class="sub-heading">What a client can expect</h3>
+      <div class="core-value">
+        <div class="core-value__title">OUR CORE VALUE</div>
+
+        <div class="core-value__intro">
+          Following our analysis of our target customers, we’ve defined the
+          values we believe they most want in a supplier. We’ll use these values
+          to communicate our business’s personality more clearly and
+          consistently.
+        </div>
+
+        <table id="core-value-table">
+          <colgroup>
+            <col style="width: 28%;" />
+            <col style="width: 72%;" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>VALUE</th>
+              <th>VISIBLE BEHAVIOUR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>{{advantage.ValueOneWord1}}</td><td
+              >{{advantage.VisibleBehaviourwhatWeDo1}}</td></tr>
+            <tr><td>{{advantage.ValueOneWord2}}</td><td
+              >{{advantage.VisibleBehaviourwhatWeDo2}}</td></tr>
+            <tr><td>{{advantage.ValueOneWord3}}</td><td
+              >{{advantage.VisibleBehaviourwhatWeDo3}}</td></tr>
+            <tr><td>{{advantage.ValueOneWord4}}</td><td
+              >{{advantage.VisibleBehaviourwhatWeDo4}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Our Vision</h2>
+      <p><strong>This is our future!</strong><br />
+        “Within three years, Bird and Pest Management will be a highly trusted
+        and widely recognised leader across London and the Home Counties,
+        achieving substantial revenue growth through exceptional service, strong
+        reputation, and industry-leading expertise.”
+      </p>
+    </div>
+
+    <div class="page-break"></div>
+    {{!**********************************************************************************************
+**************************************** Sales & Marketing Strategy *********************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+      <h2>Sales & Marketing Strategy</h2>
+      <table class="sales" aria-label="Sales and Marketing Plan">
+        <colgroup>
+          <col class="col-no" />
+          <col class="col-activity" />
+          <col class="col-score" />
+        </colgroup>
+
+        <thead>
+          <tr class="title">
+            <th colspan="3">SALES AND MARKETING PLAN</th>
+          </tr>
+          <tr class="head">
+            <th>&nbsp;</th>
+            <th>ACTIVITY</th>
+            <th>SCORE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr><td class="no">1</td><td class="activity">Create a client &
+              prospect list (minimum 100) and review monthly</td><td
+              class="score"
+            >100</td></tr>
+          <tr><td class="no">2</td><td
+              class="activity"
+            >{{market.Result._2}}</td><td
+              class="score"
+            >{{market.Result._2S}}</td></tr>
+          <tr><td class="no">3</td><td
+              class="activity"
+            >{{market.Result._3}}</td><td
+              class="score"
+            >{{market.Result._3S}}</td></tr>
+          <tr><td class="no">4</td><td
+              class="activity"
+            >{{market.Result._4}}</td><td
+              class="score"
+            >{{market.Result._4S}}</td></tr>
+          <tr><td class="no">5</td><td
+              class="activity"
+            >{{market.Result._5}}</td><td
+              class="score"
+            >{{market.Result._5S}}</td></tr>
+          <tr><td class="no">6</td><td
+              class="activity"
+            >{{market.Result._6}}</td><td
+              class="score"
+            >{{market.Result._6S}}</td></tr>
+          <tr><td class="no">7</td><td
+              class="activity"
+            >{{market.Result._7}}</td><td
+              class="score"
+            >{{market.Result._7S}}</td></tr>
+          <tr><td class="no">8</td><td
+              class="activity"
+            >{{market.Result._8}}</td><td
+              class="score"
+            >{{market.Result._8S}}</td></tr>
+          <tr><td class="no">9</td><td
+              class="activity"
+            >{{market.Result._9}}</td><td
+              class="score"
+            >{{market.Result._9S}}</td></tr>
+          <tr><td class="no">10</td><td
+              class="activity"
+            >{{market.Result._10}}</td><td
+              class="score"
+            >{{market.Result._10S}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+************************* Our Objectives and the Strategies to make them real *********
+****************************************************************************************************}}
+
+    <div class="page pages">
+      <h2>Our Objectives and the Strategies to make them real</h2>
+      <br />
+      <table class="finance" aria-label="Finance section">
+        <colgroup>
+          <col class="col-num" />
+          <col class="col-title" />
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th class="num">1</th>
+            <th class="title">FINANCE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="label">
+            <td colspan="2">Objective:</td>
+          </tr>
+          <tr class="spacer">
+            <td colspan="2">{{objectives.Pillar1FINANCE.Objective}}</td>
+          </tr>
+
+          <tr class="label">
+            <td colspan="2">Strategies to achieve objective</td>
+          </tr>
+
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar1FINANCE.Strategy1}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar1FINANCE.Strategy2}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar1FINANCE.Strategy3}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar1FINANCE.Strategy4}}</td></tr>
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <table class="finance" aria-label="OPERATIONS section">
+        <colgroup>
+          <col class="col-num" />
+          <col class="col-title" />
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th class="num">2</th>
+            <th class="title">OPERATIONS</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="label">
+            <td colspan="2">Objective:</td>
+          </tr>
+          <tr class="spacer">
+            <td colspan="2">{{objectives.Pillar2Operations.Objective}}</td>
+          </tr>
+
+          <tr class="label">
+            <td colspan="2">Strategies to achieve objective</td>
+          </tr>
+
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar2Operations.Strategy1}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar2Operations.Strategy2}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar2Operations.Strategy3}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar2Operations.Strategy4}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    {{! ********************************************************** }}
+
+    <div class="page pages">
+      <table class="finance" aria-label="SALES & MARKETING section">
+        <colgroup>
+          <col class="col-num" />
+          <col class="col-title" />
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th class="num">3</th>
+            <th class="title">SALES & MARKETING</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="label">
+            <td colspan="2">Objective:</td>
+          </tr>
+          <tr class="spacer">
+            <td colspan="2">{{objectives.Pillar3SalesMarketing.Objective}}</td>
+          </tr>
+
+          <tr class="label">
+            <td colspan="2">Strategies to achieve objective</td>
+          </tr>
+
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar3SalesMarketing.Strategy1}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar3SalesMarketing.Strategy2}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar3SalesMarketing.Strategy3}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar3SalesMarketing.Strategy4}}</td></tr>
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <table class="finance" aria-label="PEOPLE section">
+        <colgroup>
+          <col class="col-num" />
+          <col class="col-title" />
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th class="num">4</th>
+            <th class="title">PEOPLE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="label">
+            <td colspan="2">Objective:</td>
+          </tr>
+          <tr class="spacer">
+            <td colspan="2">{{objectives.Pillar4People.Objective}}</td>
+          </tr>
+
+          <tr class="label">
+            <td colspan="2">Strategies to achieve objective</td>
+          </tr>
+
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar4People.Strategy1}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar4People.Strategy2}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar4People.Strategy3}}</td></tr>
+          <tr class="entry"><td
+              colspan="2"
+            >{{objectives.Pillar4People.Strategy4}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** Next 90 Days *********************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+      <h2>Next 90 Days</h2>
+      <table class="next-90-days" aria-label="The next 90 days big moves">
+        <colgroup>
+          <col class="col-strategy" />
+          <col class="col-date" />
+        </colgroup>
+
+        <thead>
+          <tr class="title">
+            <th colspan="2">The next 90 Days – Big Moves for each Pillar</th>
+          </tr>
+          <tr class="head">
+            <th>Lead strategies we will prioritise for maximum effect</th>
+            <th class="date">Target date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="pillar">
+            <td>Finance</td>
+            <td class="date"></td>
+          </tr>
+          <tr class="entry">
+            <td>{{objectives._3Next90DaysBigMovesForEachPillar.Finance}}</td>
+            <td
+              class="date"
+            >{{objectives._3Next90DaysBigMovesForEachPillar.Date1}}</td>
+          </tr>
+
+          <tr class="pillar">
+            <td>Operations</td>
+            <td class="date"></td>
+          </tr>
+          <tr class="entry">
+            <td>{{objectives._3Next90DaysBigMovesForEachPillar.Operations}}</td>
+            <td
+              class="date"
+            >{{objectives._3Next90DaysBigMovesForEachPillar.Date2}}</td>
+          </tr>
+
+          <tr class="pillar">
+            <td>Sales and Marketing</td>
+            <td class="date"></td>
+          </tr>
+          <tr class="entry">
+            <td
+            >{{objectives._3Next90DaysBigMovesForEachPillar.SalesMarketing}}</td>
+            <td
+              class="date"
+            >{{objectives._3Next90DaysBigMovesForEachPillar.Date3}}</td>
+          </tr>
+          <tr class="pillar">
+            <td>People</td>
+            <td class="date"></td>
+          </tr>
+          <tr class="entry">
+            <td>{{objectives._3Next90DaysBigMovesForEachPillar.People}}</td>
+            <td
+              class="date"
+            >{{objectives._3Next90DaysBigMovesForEachPillar.Date4}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** KPIs *********************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+      <h2>KPIs (Key Performance Indicators)</h2>
+      <table class="kpis" aria-label="KPIs and Performance Management">
+        <colgroup>
+          <col class="col-measures" />
+          <col class="col-target" />
+        </colgroup>
+
+        <thead>
+          <tr class="title">
+            <th colspan="2">KPIs and Performance Management</th>
+          </tr>
+          <tr class="head">
+            <th>Measures</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="section">
+            <td>1/ Finance</td>
+            <td>Target</td>
+          </tr>
+          <tr class="measure"><td>Total monthly sales £</td><td
+            >{{objectives.Pillar1FINANCE.Target1}}</td></tr>
+          <tr class="measure"><td>Gross Profit as a % of revenue</td><td
+            >{{objectives.Pillar1FINANCE.Target2}}</td></tr>
+          <tr class="measure"><td>Net Profit as a % of revenue</td><td
+            >{{objectives.Pillar1FINANCE.Target3}}</td></tr>
+          <tr class="measure"><td>Debtor Days (Average time to get paid)</td><td
+            >{{objectives.Pillar1FINANCE.Target4}}</td></tr>
+
+          <tr class="section">
+            <td>2/ Operations</td>
+            <td>Target</td>
+          </tr>
+          <tr class="measure"><td>Average revenue per fee earning person per
+              day. RPP.</td><td
+            >{{objectives.Pillar2Operations.Target}}</td></tr>
+
+          <tr class="section">
+            <td>3/ Sales and Marketing</td>
+            <td>Target</td>
+          </tr>
+          <tr class="measure"><td>Sales target per month</td><td
+            >{{objectives.Pillar3SalesMarketing.Target1}}</td></tr>
+          <tr class="measure"><td>Number of leads/enquiries p/month</td><td
+            >{{objectives.Pillar3SalesMarketing.Target2}}</td></tr>
+          <tr class="measure"><td>Number of quotes per month</td><td
+            >{{objectives.Pillar3SalesMarketing.Target3}}</td></tr>
+
+          <tr class="section">
+            <td>4/ People</td>
+            <td>Target</td>
+          </tr>
+          <tr class="measure long">
+            <td>Staff Churn % over rolling 12 months (Numbers of leavers ÷
+              Average headcount)</td>
+            <td>{{objectives.Pillar4People.Target1}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** Risks and Mitigations ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <h2>Risks and Mitigations</h2>
+      <p><strong>Financial Levers That Drive Our Results</strong><br />
+        Our financial performance is driven by a few key levers that have an
+        outsized impact on profitability and long-term growth. Small
+        improvements in these areas compound quickly over time, strengthening
+        margins and supporting sustainable expansion.
+      </p>
+      <p><strong>1. Pricing Discipline</strong><br />
+        Even a small increase in average job value—such as a 3–5% price
+        adjustment or better upselling of proofing and bio-clean services—can
+        significantly improve revenue without increasing workload.
+      </p>
+      <p><strong>2. Cost Control Through Subcontractor Efficiency</strong><br />
+        Maintaining strong relationships with subcontractors and improving
+        operational efficiency (for example, reducing unnecessary callouts or
+        downtime by 10%) directly increases our gross margin.
+      </p>
+      <p><strong>3. Improved Job Scheduling & Utilisation</strong><br />
+        Optimising schedules to reduce travel time and maximise daily job
+        count—improving utilisation by even one extra job per week—creates
+        substantial revenue uplift across the year.
+      </p>
+      <p><strong>4. Higher Contract Retention & Renewal Rates</strong><br />
+        A small rise in client retention (e.g., from 80% to 85%) dramatically
+        boosts recurring income and lowers acquisition costs, contributing to
+        financial stability.
+      </p>
+      <p><strong>5. Reducing Material & Waste Costs</strong><br />
+        Simple measures like negotiating better rates on proofing materials or
+        reducing wastage by 5–10% consistently improve profit margins on every
+        job.
+      </p>
+
+    </div>
+    <div class="page-break"></div>
+    {{!**********************************************************************************************
+**************************************** SWOT ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <h2>SWOT</h2>
+      <table class="swot" aria-label="SWOT analysis grid">
+        <colgroup>
+          <col />
+          <col />
+        </colgroup>
+
+        <thead>
+          <tr class="title">
+            <th colspan="2">{{final.CompanyName}} - SWOT ANALYSIS GRID</th>
+          </tr>
+          <tr class="sections">
+            <th class="strengths">STRENGTHS</th>
+            <th class="weaknesses">WEAKNESSES</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="entry"><td>{{swot.SWOT.S1}}</td><td
+            >{{swot.SWOT.W1}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.S2}}</td><td
+            >{{swot.SWOT.W2}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.S3}}</td><td
+            >{{swot.SWOT.W3}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.S4}}</td><td
+            >{{swot.SWOT.W4}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.S5}}</td><td
+            >{{swot.SWOT.W5}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.S6}}</td><td
+            >{{swot.SWOT.W6}}</td></tr>
+
+          <tr class="sections">
+            <th class="opportunities">OPPORTUNITIES</th>
+            <th class="threats">THREATS</th>
+          </tr>
+
+          <tr class="entry"><td>{{swot.SWOT.O1}}</td><td
+            >{{swot.SWOT.T1}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.O2}}</td><td
+            >{{swot.SWOT.T2}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.O3}}</td><td
+            >{{swot.SWOT.T3}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.O4}}</td><td
+            >{{swot.SWOT.T4}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.O5}}</td><td
+            >{{swot.SWOT.T5}}</td></tr>
+          <tr class="entry"><td>{{swot.SWOT.O6}}</td><td
+            >{{swot.SWOT.T6}}</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** Pricing ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <h2>Pricing</h2>
+
+      <table class="pricing" aria-label="Standard labour rates pricing table">
+        <colgroup>
+          <col class="col-desc" />
+          <col class="col-price" />
+        </colgroup>
+
+        <thead>
+          <tr class="company">
+            <th colspan="2">{{final.CompanyName}}</th>
+          </tr>
+          <tr class="subtitle">
+            <th colspan="2">2025 Standard Labour Rates</th>
+          </tr>
+          <tr class="head">
+            <th>Description</th>
+            <th>List Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Standard Day Rate</td>
+            <td>{{ratesCard.Results._1}}</td>
+          </tr>
+          <tr class="alt">
+            <td>Day Rate on Sundays or bank holidays</td>
+            <td>{{ratesCard.Results._2}}</td>
+          </tr>
+          <tr>
+            <td>Standard Hourly rate (Monday–Saturday 7am–6pm, edit times so
+              they are appropriate to you)</td>
+            <td>{{ratesCard.Results._3}}</td>
+          </tr>
+          <tr class="alt">
+            <td>Emergency Call out (immediate response) In Hours</td>
+            <td>{{ratesCard.Results._4}}</td>
+          </tr>
+          <tr>
+            <td>Out Of Hours Monday–Saturday 6pm–7am</td>
+            <td>{{ratesCard.Results._5}}</td>
+          </tr>
+          <tr class="alt">
+            <td>Hourly Rate Sundays and Bank Holidays</td>
+            <td>{{ratesCard.Results._6}}</td>
+          </tr>
+          <tr>
+            <td>Hourly rate for night works</td>
+            <td>{{ratesCard.Results._7}}</td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="2">All prices exclude VAT</td>
+          </tr>
+        </tfoot>
+      </table>
+
+    </div>
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** Financial-Forecast P and L ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <h2>Financial-Forecast P and L</h2>
+
+      <p style="border: 1px solid #000; padding: 10px;">
+        {{final._14FinancialsForecastPL}}
+      </p>
+
+    </div>
+    <div class="page-break"></div>
+    {{!**********************************************************************************************
+**************************************** My Financial Forecast for Next 12 Months -1 ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <table class="financial-forecast" aria-label="Financial forecast table 1">
+        <colgroup>
+          <col class="col-item" />
+          <col class="col-val" />
+          <col class="col-val" />
+          <col class="col-val" />
+          <col class="col-val" />
+          <col class="col-val" />
+        </colgroup>
+
+        <thead>
+          <tr class="title">
+            <th colspan="6">My Financial Forecast for Next 12 Months</th>
+          </tr>
+          <tr class="head">
+            <th></th>
+            <th>Current Monthly</th>
+            <th>Monthly Forecast</th>
+            <th>Annual Forecast</th>
+            <th>Monthly Budget</th>
+            <th>Annual Budget</th>
+          </tr>
+          <tr class="subhead">
+            <th></th>
+            <th></th>
+            <th>Achievable with current resources</th>
+            <th>Achievable with current resources</th>
+            <th>Based on revenue needed to achieve targets</th>
+            <th>Based on revenue needed to achieve targets</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="total-label">Sales Revenue</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D9
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E9
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F9
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H9
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I9
+              }}</td>
+          </tr>
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr class="section">
+            <td colspan="6">Cost of Sales</td>
+          </tr>
+
+          <tr>
+            <td class="label">Direct Labour</td>
+            <td class="val"></td><td class="val"></td><td class="val"></td><td
+              class="val"
+            ></td><td class="val"></td>
+          </tr>
+          <tr>
+            <td class="sub">Gross Salaries</td>
+            <td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.D14
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.E14
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.F14
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.H14
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.I14
+              }}</td>
+          </tr>
+          <tr>
+            <td class="sub">NI on Gross Labour</td>
+            <td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.D15
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.E15
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.F15
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.H15
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.I15
+              }}</td>
+          </tr>
+          <tr>
+            <td class="label">Total Direct Labour</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D16
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E16
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F16
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H16
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I16
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.E17
+              }}</td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.H17
+              }}</td><td></td></tr>
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+          <tr>
+            <td class="label">Sub contract Labour</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D18
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E18
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F18
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H18
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I18
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.E19
+              }}</td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.H19
+              }}</td><td></td></tr>
+
+          <tr>
+            <td class="label">Direct Vehicle Costs</td>
+            <td class="val"></td><td class="val"></td><td class="val"></td><td
+              class="val"
+            ></td><td class="val"></td>
+          </tr>
+          <tr>
+            <td class="label">Total Direct Vehicle Costs</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D21
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E21
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F21
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H21
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I21
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.E23
+              }}</td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.H23
+              }}</td><td></td></tr>
+
+          <tr>
+            <td class="label">Total Direct Materials and Plant</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D24
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E24
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F24
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H24
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I24
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.E25
+              }}</td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.H25
+              }}</td><td></td></tr>
+          <tr>
+            <td class="total-label">Total Cost of Sales</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D26
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E26
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F26
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H26
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I26
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr>
+            <td class="total-label">Gross Profit</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D28
+              }}</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E28
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F28
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H28
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I28
+              }}</td>
+          </tr>
+          <tr class="spacer"><td></td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.E29
+              }}</td><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.H29
+              }}</td><td></td></tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="page-break"></div>
+
+    {{!**********************************************************************************************
+**************************************** My Financial Forecast for Next 12 Months -2 ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+
+      <table class="financial-forecast" aria-label="Financial forecast table 2">
+        <colgroup>
+          <col class="col-item" />
+          <col class="col-val" />
+          <col class="col-val" />
+          <col class="col-val" />
+          <col class="col-val" />
+          <col class="col-val" />
+        </colgroup>
+
+        <thead>
+          <tr class="head">
+            <th></th>
+            <th>Current Monthly</th>
+            <th>Monthly Forecast</th>
+            <th>Annual Forecast</th>
+            <th>Monthly Budget</th>
+            <th>Annual Budget</th>
+          </tr>
+          <tr class="subhead">
+            <th></th>
+            <th></th>
+            <th>Achievable with current resources</th>
+            <th>Achievable with current resources</th>
+            <th>Based on revenue needed to achieve targets</th>
+            <th>Based on revenue needed to achieve targets</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="section">
+            <td colspan="6">Operating &amp; Selling Expenses</td>
+          </tr>
+
+          <tr>
+            <td class="label">Salaries</td>
+            <td class="val"></td><td class="val"></td><td class="val"></td><td
+              class="val"
+            ></td><td class="val"></td>
+          </tr>
+          <tr>
+            <td class="sub">Management/Sales &amp; Administration Gross Salaries</td>
+            <td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.D32
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.E32
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.F32
+              }}</td>
+            <td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.H32
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.I32
+              }}</td>
+          </tr>
+          <tr>
+            <td class="sub">Employer&#39;s NI</td>
+            <td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.D33
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.E33
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.F33
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.H33
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.I33
+              }}</td>
+          </tr>
+          <tr>
+            <td class="label">Total Salaries</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D34
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E34
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F34
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H34
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I34
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr class="section">
+            <td colspan="6">General and Administrative Expenses</td>
+          </tr>
+
+          <tr><td class="sub">Cost for running office and stores</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.D38}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.E38}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.F38}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.H38}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.I38}}</td></tr>
+          <tr><td class="sub">Telephone and communications costs</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.D39}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.E39}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.F39}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.H39}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.I39}}</td></tr>
+          <tr><td class="sub">Professional fees, accountant, legal, consultancy</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.D40}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.E40}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.F40}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.H40}}</td><td
+              class="val"
+            >{{formatCurrency financial.ProfitAndLossReport.I40}}</td></tr>
+          <tr><td class="sub">Insurances</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.D41
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.E41
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.F41
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.H41
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.I41
+              }}</td></tr>
+          <tr><td class="sub">Other</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.D42
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.E42
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.F42
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.H42
+              }}</td><td class="val">{{formatCurrency
+                financial.ProfitAndLossReport.I42
+              }}</td></tr>
+          <tr>
+            <td class="label">Total General and Administrative Expenses</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D43
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E43
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F43
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H43
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I43
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr>
+            <td class="label">Marketing Expenses</td>
+            <td class="val"></td><td class="val"></td><td class="val"></td><td
+              class="val"
+            ></td><td class="val"></td>
+          </tr>
+          <tr>
+            <td class="label">Total Sales &amp; Marketing Expenses</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D46
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E46
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F46
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H46
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I46
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr>
+            <td class="total-label">Total Operating &amp; Selling Expenses</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D48
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E48
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F48
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H48
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I48
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr>
+            <td class="dark-label">Total Costs</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D50
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E50
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F50
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H50
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I50
+              }}</td>
+          </tr>
+
+          <tr class="spacer"><td></td><td></td><td></td><td></td><td></td><td
+            ></td></tr>
+
+          <tr>
+            <td class="dark-label">Net Profit</td>
+            <td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.D52
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.E52
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.F52
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.H52
+              }}</td><td class="val total">{{formatCurrency
+                financial.ProfitAndLossReport.I52
+              }}</td>
+          </tr>
+          <tr class="spacer"><td></td><td>{{formatPercentage
+                financial.ProfitAndLossReport.D53
+              }}</td><td>{{formatPercentage
+                financial.ProfitAndLossReport.E53
+              }}</td><td>{{formatPercentage
+                financial.ProfitAndLossReport.F53
+              }}</td><td>{{formatPercentage
+                financial.ProfitAndLossReport.H53
+              }}</td><td>{{formatPercentage
+                financial.ProfitAndLossReport.I53
+              }}</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </body>
+</html>

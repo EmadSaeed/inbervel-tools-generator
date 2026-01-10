@@ -860,7 +860,7 @@ table#core-value-table {
 .financial-forecast thead tr.subhead th {
     background: #fff;
     color: #000;
-    font-weight: 600;
+    font-weight: 400;
     text-align: centre;
     font-size: 13px;
     font-style: italic;
@@ -902,21 +902,25 @@ table#core-value-table {
     text-align: centre;
     vertical-align: middle;
     height: 34px;
+    text-align: center;
 }
 
 .financial-forecast td.val.total {
     background: var(--pale-green);
     font-weight: 700;
+    text-align: center;
 }
 
 /* Dark green left blocks */
 .financial-forecast td.dark-label {
     background: var(--dark-green);
     color: #fff;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .financial-forecast tr.spacer td {
     height: 14px;
     background: #fff;
+    text-align: center;
+    font-weight: 700;
 }
