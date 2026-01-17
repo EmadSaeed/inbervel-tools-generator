@@ -61,32 +61,74 @@ function safeKeyPart(input: string) {
     .replace(/[^a-z0-9._-]+/g, "-");
 }
 
-async function uploadLogoToBlob(opts: {
-  userEmail: string;
-  url: string;
-  filename: string;
-  contentType: string;
-}) {
-  // 1) Download from Cognito immediately (URL is time-limited)
-  const res = await fetch(opts.url);
-  if (!res.ok)
-    throw new Error(`Failed to download logo from Cognito: ${res.status}`);
+import { put } from "@vercel/blob";
 
-  const contentType = res.headers.get("content-type") ?? opts.contentType;
-  const arrayBuffer = await res.arrayBuffer();
+/**
+ * Downloads a Cognito-hosted file URL and stores it permanently in Vercel Blob.
+ * Returns the public Blob URL you can store in `companyLogoDataUri`.
+ *
+ * Requires:
+ * - BLOB_READ_WRITE_TOKEN in env (local + Vercel)
+ */
+export async function uploadLogoToBlob(opts: {
+  fileUrl: string;
+  filename: string; // e.g. "ipex_soft_logo.png"
+  contentType?: string; // e.g. "image/png"
+  userEmail?: string; // used to namespace the blob path
+  formId?: string; // used to namespace the blob path
+}): Promise<string> {
+  const fileUrl = String(opts.fileUrl || "").trim();
+  if (!fileUrl) throw new Error("uploadLogoToBlob: missing fileUrl");
 
-  // 2) Upload to Vercel Blob (public so Puppeteer can fetch it)
-  const pathname = `logos/${safeKeyPart(
-    opts.userEmail
-  )}/${Date.now()}-${safeKeyPart(opts.filename)}`;
+  const filename = String(opts.filename || "logo").trim();
+  const contentType =
+    (opts.contentType && String(opts.contentType).trim()) ||
+    "application/octet-stream";
 
-  const blob = await put(pathname, new Uint8Array(arrayBuffer), {
-    access: "public",
-    contentType,
-    addRandomSuffix: false,
+  // Download the file from Cognito
+  const res = await fetch(fileUrl, {
+    // Cognito file links are typically time-limited but public via token.
+    // No special auth headers needed unless you configured otherwise.
+    redirect: "follow",
   });
 
-  return blob.url; // permanent URL
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `uploadLogoToBlob: failed to download (${res.status} ${res.statusText}) ${text}`.trim()
+    );
+  }
+
+  const arrayBuffer = await res.arrayBuffer();
+
+  // ✅ @vercel/blob put() expects Buffer | Blob | ReadableStream | File | etc.
+  // Use Buffer (Node runtime).
+  const body = Buffer.from(arrayBuffer);
+
+  // Build a stable, safe pathname (no spaces/special chars)
+  const safeKeyPart = (v: string) =>
+    v
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9._-]/g, "");
+
+  const nsEmail = opts.userEmail
+    ? safeKeyPart(opts.userEmail)
+    : "unknown-email";
+  const nsForm = opts.formId ? safeKeyPart(opts.formId) : "unknown-form";
+  const safeName = safeKeyPart(filename) || "logo";
+
+  // Example: cognito-uploads/24/hello-ipexsoft-co-uk/1700000000000-ipex_soft_logo.png
+  const pathname = `cognito-uploads/${nsForm}/${nsEmail}/${Date.now()}-${safeName}`;
+
+  const blob = await put(pathname, body, {
+    access: "public",
+    contentType,
+    addRandomSuffix: false, // keep the pathname exactly as we set it
+  });
+
+  return blob.url;
 }
 
 export async function cognitoSubmissionHandler(payload: any) {
