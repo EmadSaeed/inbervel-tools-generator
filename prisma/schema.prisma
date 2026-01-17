@@ -79,3 +79,15 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model AdminOtp {
+    id        String    @id @default(cuid())
+    email     String
+    codeHash  String
+    expiresAt DateTime
+    usedAt    DateTime?
+    createdAt DateTime  @default(now())
+
+    @@index([email])
+    @@index([expiresAt])
+}

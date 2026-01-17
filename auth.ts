@@ -1,44 +1,71 @@
 import type { NextAuthOptions } from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import CredentialsProvider from "next-auth/providers/credentials";
+import crypto from "node:crypto";
 import { prisma } from "@/lib/prisma";
 
-async function isAllowedAdminEmail(email: string) {
-  const normalised = email.toLowerCase().trim();
-  const row = await prisma.allowedAdminEmail.findUnique({
-    where: { email: normalised },
-    select: { email: true },
-  });
-  return !!row;
+function sha256(input: string) {
+  return crypto.createHash("sha256").update(input).digest("hex");
+}
+
+function normaliseEmail(v: string) {
+  return v.toLowerCase().trim();
 }
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60, // 1 hour in seconds
+    updateAge: 15 * 60, // optional: refresh session every 15 mins
+  },
 
   providers: [
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: Number(process.env.EMAIL_SERVER_PORT ?? 465),
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD, // Resend API key for SMTP
-        },
+    CredentialsProvider({
+      name: "Passcode",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        code: { label: "Code", type: "text" },
       },
-      from: process.env.AUTH_EMAIL_FROM,
+      async authorize(credentials) {
+        const emailRaw = credentials?.email;
+        const codeRaw = credentials?.code;
+
+        if (!emailRaw || !codeRaw) return null;
+
+        const email = normaliseEmail(emailRaw);
+        const code = String(codeRaw).trim();
+
+        // ✅ Allowlist gate
+        const allowed = await prisma.allowedAdminEmail.findUnique({
+          where: { email },
+          select: { email: true },
+        });
+        if (!allowed) return null;
+
+        const codeHash = sha256(code);
+        const now = new Date();
+
+        // Find latest unused, unexpired code
+        const otp = await prisma.adminOtp.findFirst({
+          where: {
+            email,
+            codeHash,
+            usedAt: null,
+            expiresAt: { gt: now },
+          },
+          orderBy: { createdAt: "desc" },
+        });
+
+        if (!otp) return null;
+
+        // Mark as used (one-time)
+        await prisma.adminOtp.update({
+          where: { id: otp.id },
+          data: { usedAt: now },
+        });
+
+        // Return a user object (minimal)
+        return { id: email, email };
+      },
     }),
   ],
-
-  callbacks: {
-    async signIn({ user, email }) {
-      const candidate = String((email as any)?.to ?? user?.email ?? "")
-        .toLowerCase()
-        .trim();
-
-      if (!candidate) return false;
-
-      // DB allowlist gate
-      return await isAllowedAdminEmail(candidate);
-    },
-  },
 };
