@@ -6,29 +6,48 @@ import { htmlToPdfBuffer } from "@/lib/pdf/generatePdf";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+function safeFilenamePart(value: string) {
+  return value
+    .replace(/[\/\\?%*:|"<>]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const body = await req.json().catch(() => null);
+    const email = String(body?.email ?? "")
+      .toLowerCase()
+      .trim();
 
-    if (!email || typeof email !== "string") {
+    if (!email) {
       return new Response("Missing email", { status: 400 });
     }
 
     const dto = await buildBusinessPlanTemplateDto(email);
     const html = await renderBusinessPlanTemplate(dto);
 
-    const pdf = await htmlToPdfBuffer(html, { title: "Business Plan" });
+    // Buffer (Node) returned from puppeteer
+    const pdfBuffer = await htmlToPdfBuffer(html, { title: "Business Plan" });
 
-    return new Response(pdf, {
+    const companyName = safeFilenamePart(
+      dto?.final?.CompanyName || dto?.companyName || "Company"
+    );
+
+    const filename = `${companyName} Business Plan.pdf`;
+
+    // ✅ Convert Buffer -> Uint8Array for Web Response BodyInit compatibility
+    return new Response(new Uint8Array(pdfBuffer), {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="business-plan.pdf"',
+        "Content-Disposition": `attachment; filename="${filename}"`,
+        "Cache-Control": "no-store",
       },
     });
-  } catch (err) {
-    console.error("Generate business plan failed:", err);
+  } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Unknown error";
-    return new Response(message, { status: 500 });
+    console.error("generate-business-plan error:", err);
+    return new Response(`Error: ${message}`, { status: 500 });
   }
 }
