@@ -27,16 +27,15 @@ export async function POST(req: NextRequest) {
     const dto = await buildBusinessPlanTemplateDto(email);
     const html = await renderBusinessPlanTemplate(dto);
 
-    // Buffer (Node) returned from puppeteer
     const pdfBuffer = await htmlToPdfBuffer(html, { title: "Business Plan" });
 
+    // ✅ BusinessPlanTemplateDto does not have companyName, so use dto.final.CompanyName
     const companyName = safeFilenamePart(
-      dto?.final?.CompanyName || dto?.companyName || "Company"
+      String(dto?.final?.CompanyName ?? "Company")
     );
 
     const filename = `${companyName} Business Plan.pdf`;
 
-    // ✅ Convert Buffer -> Uint8Array for Web Response BodyInit compatibility
     return new Response(new Uint8Array(pdfBuffer), {
       status: 200,
       headers: {
