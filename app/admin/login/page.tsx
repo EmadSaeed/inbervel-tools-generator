@@ -23,9 +23,11 @@ export default function AdminLogin() {
             });
 
             if (!res.ok) {
-                alert(await res.text());
+                const msg = (await res.text()) || `Request failed (${res.status})`;
+                alert(msg);
                 return;
             }
+
 
             setSent(true);
         } finally {

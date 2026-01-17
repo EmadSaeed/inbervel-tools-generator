@@ -8,14 +8,18 @@ datasource db {
 }
 
 model CognitoSubmission {
-    id             String    @id @default(cuid())
-    formId         String
-    formTitle      String?
-    firstName      String?
-    lastName       String?
-    companyName    String?
-    userEmail      String
-    payload        Json
+    id          String  @id @default(cuid())
+    formId      String
+    formTitle   String?
+    firstName   String?
+    lastName    String?
+    companyName String?
+    userEmail   String
+    payload     Json
+
+    // NEW: permanent logo location (Blob/S3 URL)
+    companyLogoDataUri String?
+
     entryCreatedAt DateTime?
     entryUpdatedAt DateTime?
     createdAt      DateTime  @default(now())
