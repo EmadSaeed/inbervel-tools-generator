@@ -1,35 +1,10 @@
-import { put } from "@vercel/blob";
-import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
+import { put } from "@vercel/blob";
 
 function toDate(value: unknown): Date | null {
   if (typeof value !== "string") return null;
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? null : d;
-}
-
-function extractCompanyLogoFileUrl(payload: any): string | null {
-  // You said: final -> payload -> CompanyLogo -> File
-  // In your DB, "final" is the payload itself for form 24.
-  // So it is usually payload?.CompanyLogo?.File
-
-  const url =
-    payload?.CompanyLogo?.File ??
-    payload?.Final?.CompanyLogo?.File ?? // fallback in case your template wraps it
-    null;
-
-  return typeof url === "string" && url.startsWith("http") ? url : null;
-}
-
-async function downloadAsBuffer(
-  url: string
-): Promise<{ buf: Buffer; contentType: string }> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to download logo (${res.status})`);
-  const contentType =
-    res.headers.get("content-type") || "application/octet-stream";
-  const arrayBuf = await res.arrayBuffer();
-  return { buf: Buffer.from(arrayBuf), contentType };
 }
 
 function extractFromCognito(payload: any) {
@@ -40,7 +15,13 @@ function extractFromCognito(payload: any) {
   const lastName = payload?.Name?.Last ? String(payload.Name.Last) : null;
   const companyName = payload?.CompanyName ? String(payload.CompanyName) : null;
 
-  const userEmail = payload?.Email ? String(payload.Email).toLowerCase() : "";
+  // NOTE: sometimes Cognito Email can be like "mailto:..." depending on how you copy it.
+  // Your raw webhook usually sends plain email. Still, we normalise safely:
+  const rawEmail = payload?.Email ? String(payload.Email) : "";
+  const userEmail = rawEmail
+    .replace(/^mailto:/i, "")
+    .toLowerCase()
+    .trim();
 
   const entryCreatedAt = toDate(payload?.Entry?.DateCreated);
   const entryUpdatedAt = toDate(payload?.Entry?.DateUpdated);
@@ -60,36 +41,69 @@ function extractFromCognito(payload: any) {
   };
 }
 
+function getCompanyLogo(payload: any) {
+  const fileObj = payload?.CompanyLogo?.[0];
+  if (!fileObj?.File) return null;
+
+  return {
+    url: String(fileObj.File),
+    name: fileObj?.Name ? String(fileObj.Name) : "company-logo",
+    contentType: fileObj?.ContentType
+      ? String(fileObj.ContentType)
+      : "application/octet-stream",
+  };
+}
+
+function safeKeyPart(input: string) {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9._-]+/g, "-");
+}
+
+async function uploadLogoToBlob(opts: {
+  userEmail: string;
+  url: string;
+  filename: string;
+  contentType: string;
+}) {
+  // 1) Download from Cognito immediately (URL is time-limited)
+  const res = await fetch(opts.url);
+  if (!res.ok)
+    throw new Error(`Failed to download logo from Cognito: ${res.status}`);
+
+  const contentType = res.headers.get("content-type") ?? opts.contentType;
+  const arrayBuffer = await res.arrayBuffer();
+
+  // 2) Upload to Vercel Blob (public so Puppeteer can fetch it)
+  const pathname = `logos/${safeKeyPart(
+    opts.userEmail
+  )}/${Date.now()}-${safeKeyPart(opts.filename)}`;
+
+  const blob = await put(pathname, new Uint8Array(arrayBuffer), {
+    access: "public",
+    contentType,
+    addRandomSuffix: false,
+  });
+
+  return blob.url; // permanent URL
+}
+
 export async function cognitoSubmissionHandler(payload: any) {
   const data = extractFromCognito(payload);
 
-  // If this is the FINAL form (24), fetch + store logo
+  // If this is the "final" form (24), attempt to persist the logo
   let companyLogoDataUri: string | null = null;
 
   if (data.formId === "24") {
-    const logoUrl = extractCompanyLogoFileUrl(payload);
-
-    if (logoUrl) {
-      const { buf, contentType } = await downloadAsBuffer(logoUrl);
-
-      // use a stable filename
-      const ext = contentType.includes("png")
-        ? "png"
-        : contentType.includes("jpeg")
-        ? "jpg"
-        : contentType.includes("svg")
-        ? "svg"
-        : "bin";
-
-      const key = `logos/${data.userEmail}/${crypto.randomUUID()}.${ext}`;
-
-      const blob = await put(key, buf, {
-        access: "public",
-        contentType,
-        addRandomSuffix: false,
+    const logo = getCompanyLogo(payload);
+    if (logo) {
+      companyLogoDataUri = await uploadLogoToBlob({
+        userEmail: data.userEmail,
+        url: logo.url,
+        filename: logo.name,
+        contentType: logo.contentType,
       });
-
-      companyLogoDataUri = blob.url; // stable URL you control
     }
   }
 
@@ -107,7 +121,7 @@ export async function cognitoSubmissionHandler(payload: any) {
       entryCreatedAt: data.entryCreatedAt,
       entryUpdatedAt: data.entryUpdatedAt,
       payload,
-      companyLogoDataUri, // only set for form 24
+      companyLogoDataUri, // saved if form 24 + logo exists
     },
     update: {
       formTitle: data.formTitle,
@@ -117,6 +131,7 @@ export async function cognitoSubmissionHandler(payload: any) {
       entryCreatedAt: data.entryCreatedAt,
       entryUpdatedAt: data.entryUpdatedAt,
       payload,
+      // only overwrite if we actually uploaded a new one
       ...(companyLogoDataUri ? { companyLogoDataUri } : {}),
     },
   });
