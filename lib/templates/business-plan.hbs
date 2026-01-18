@@ -558,9 +558,9 @@
           </tr>
           <tr class="entry">
             <td>{{objectives._3Next90DaysBigMovesForEachPillar.Finance}}</td>
-            <td
-              class="date"
-            >{{objectives._3Next90DaysBigMovesForEachPillar.Date1}}</td>
+            <td class="date">{{formatBritishDate
+                objectives._3Next90DaysBigMovesForEachPillar.Date1
+              }}</td>
           </tr>
 
           <tr class="pillar">
@@ -569,9 +569,9 @@
           </tr>
           <tr class="entry">
             <td>{{objectives._3Next90DaysBigMovesForEachPillar.Operations}}</td>
-            <td
-              class="date"
-            >{{objectives._3Next90DaysBigMovesForEachPillar.Date2}}</td>
+            <td class="date">{{formatBritishDate
+                objectives._3Next90DaysBigMovesForEachPillar.Date2
+              }}</td>
           </tr>
 
           <tr class="pillar">
@@ -581,9 +581,9 @@
           <tr class="entry">
             <td
             >{{objectives._3Next90DaysBigMovesForEachPillar.SalesMarketing}}</td>
-            <td
-              class="date"
-            >{{objectives._3Next90DaysBigMovesForEachPillar.Date3}}</td>
+            <td class="date">{{formatBritishDate
+                objectives._3Next90DaysBigMovesForEachPillar.Date3
+              }}</td>
           </tr>
           <tr class="pillar">
             <td>People</td>
@@ -591,9 +591,9 @@
           </tr>
           <tr class="entry">
             <td>{{objectives._3Next90DaysBigMovesForEachPillar.People}}</td>
-            <td
-              class="date"
-            >{{objectives._3Next90DaysBigMovesForEachPillar.Date4}}</td>
+            <td class="date">{{formatBritishDate
+                objectives._3Next90DaysBigMovesForEachPillar.Date4
+              }}</td>
           </tr>
         </tbody>
       </table>
@@ -628,29 +628,33 @@
             <td>1/ Finance</td>
             <td>Target</td>
           </tr>
-          <tr class="measure"><td>Total monthly sales £</td><td
-            >{{objectives.Pillar1FINANCE.Target1}}</td></tr>
+          <tr class="measure"><td>Total monthly sales £</td><td>{{formatCurrency
+                objectives.Pillar1FINANCE.Target1
+              }}</td></tr>
           <tr class="measure"><td>Gross Profit as a % of revenue</td><td
-            >{{objectives.Pillar1FINANCE.Target2}}</td></tr>
+            >{{formatPercentage objectives.Pillar1FINANCE.Target2}}</td></tr>
           <tr class="measure"><td>Net Profit as a % of revenue</td><td
-            >{{objectives.Pillar1FINANCE.Target3}}</td></tr>
+            >{{formatPercentage objectives.Pillar1FINANCE.Target3}}</td></tr>
           <tr class="measure"><td>Debtor Days (Average time to get paid)</td><td
-            >{{objectives.Pillar1FINANCE.Target4}}</td></tr>
+            >{{objectives.Pillar1FINANCE.Target4}} days</td></tr>
 
           <tr class="section">
             <td>2/ Operations</td>
             <td>Target</td>
           </tr>
           <tr class="measure"><td>Average revenue per fee earning person per
-              day. RPP.</td><td
-            >{{objectives.Pillar2Operations.Target}}</td></tr>
+              day. RPP.</td><td>{{formatCurrency
+                objectives.Pillar2Operations.Target
+              }}</td></tr>
 
           <tr class="section">
             <td>3/ Sales and Marketing</td>
             <td>Target</td>
           </tr>
           <tr class="measure"><td>Sales target per month</td><td
-            >{{objectives.Pillar3SalesMarketing.Target1}}</td></tr>
+            >{{formatCurrency
+                objectives.Pillar3SalesMarketing.Target1
+              }}</td></tr>
           <tr class="measure"><td>Number of leads/enquiries p/month</td><td
             >{{objectives.Pillar3SalesMarketing.Target2}}</td></tr>
           <tr class="measure"><td>Number of quotes per month</td><td
@@ -663,7 +667,7 @@
           <tr class="measure long">
             <td>Staff Churn % over rolling 12 months (Numbers of leavers ÷
               Average headcount)</td>
-            <td>{{objectives.Pillar4People.Target1}}</td>
+            <td>{{formatPercentage objectives.Pillar4People.Target1}}</td>
           </tr>
         </tbody>
       </table>
@@ -803,32 +807,32 @@
         <tbody>
           <tr>
             <td>Standard Day Rate</td>
-            <td>{{ratesCard.Results._1}}</td>
+            <td>{{formatCurrency ratesCard.Results._1}}</td>
           </tr>
           <tr class="alt">
             <td>Day Rate on Sundays or bank holidays</td>
-            <td>{{ratesCard.Results._2}}</td>
+            <td>{{formatCurrency ratesCard.Results._2}}</td>
           </tr>
           <tr>
             <td>Standard Hourly rate (Monday–Saturday 7am–6pm, edit times so
               they are appropriate to you)</td>
-            <td>{{ratesCard.Results._3}}</td>
+            <td>{{formatCurrency ratesCard.Results._3}}</td>
           </tr>
           <tr class="alt">
             <td>Emergency Call out (immediate response) In Hours</td>
-            <td>{{ratesCard.Results._4}}</td>
+            <td>{{formatCurrency ratesCard.Results._4}}</td>
           </tr>
           <tr>
             <td>Out Of Hours Monday–Saturday 6pm–7am</td>
-            <td>{{ratesCard.Results._5}}</td>
+            <td>{{formatCurrency ratesCard.Results._5}}</td>
           </tr>
           <tr class="alt">
             <td>Hourly Rate Sundays and Bank Holidays</td>
-            <td>{{ratesCard.Results._6}}</td>
+            <td>{{formatCurrency ratesCard.Results._6}}</td>
           </tr>
           <tr>
             <td>Hourly rate for night works</td>
-            <td>{{ratesCard.Results._7}}</td>
+            <td>{{formatCurrency ratesCard.Results._7}}</td>
           </tr>
         </tbody>
 

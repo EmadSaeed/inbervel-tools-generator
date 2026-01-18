@@ -72,7 +72,7 @@ Handlebars.registerHelper(
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(n);
-  }
+  },
 );
 
 Handlebars.registerHelper(
@@ -85,8 +85,8 @@ Handlebars.registerHelper(
       typeof decimals === "number"
         ? decimals
         : typeof decimals === "string" && decimals.trim() !== ""
-        ? Number(decimals)
-        : 0;
+          ? Number(decimals)
+          : 0;
 
     const safeDecimals = Number.isFinite(d) ? Math.max(0, Math.min(6, d)) : 0;
 
@@ -94,21 +94,32 @@ Handlebars.registerHelper(
     const pct = n * 100;
 
     return `${pct.toFixed(safeDecimals)}%`;
-  }
+  },
 );
+
+Handlebars.registerHelper("formatBritishDate", (value: unknown) => {
+  const d = parseToDate(value);
+  if (!d) return "";
+
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+
+  return `${dd}-${mm}-${yyyy}`;
+});
 
 export async function renderBusinessPlanTemplate(dto: any) {
   const templatePath = path.join(
     process.cwd(),
     "lib",
     "templates",
-    "business-plan.hbs"
+    "business-plan.hbs",
   );
   const cssPath = path.join(
     process.cwd(),
     "lib",
     "templates",
-    "business-plan.css"
+    "business-plan.css",
   );
 
   const [templateSource, css] = await Promise.all([
