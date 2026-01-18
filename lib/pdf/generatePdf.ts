@@ -1,6 +1,5 @@
-// lib/pdf/generatePdf.ts
-
 import chromium from "@sparticuz/chromium-min";
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 const isVercel = !!process.env.VERCEL;
 
@@ -96,7 +95,7 @@ function buildPdfOptions(opts?: PdfOptions) {
  */
 export async function htmlToPdfBuffer(
   html: string,
-  opts?: PdfOptions
+  opts?: PdfOptions,
 ): Promise<Buffer> {
   const pdfOptions = buildPdfOptions(opts);
 
@@ -128,8 +127,36 @@ export async function htmlToPdfBuffer(
 
   try {
     const page = await browser.newPage();
+    page.setDefaultTimeout(120_000);
+    page.setDefaultNavigationTimeout(120_000);
+
     await page.setViewport({ width: 1240, height: 1754 });
-    await page.setContent(html, { waitUntil: ["load", "networkidle0"] });
+    // Avoid hanging forever on networkidle0 (remote fonts/images can keep the network "busy")
+    await page.setContent(html, { waitUntil: "domcontentloaded" });
+
+    // Give the page a moment to start fetching assets
+    await await sleep(250);
+
+    // Wait for fonts (bounded)
+    try {
+      await page.evaluate(() => (document as any).fonts?.ready);
+    } catch {}
+
+    // Wait for images (bounded)
+    try {
+      await page.evaluate(async () => {
+        const imgs = Array.from(document.images || []);
+        await Promise.all(
+          imgs.map((img) => {
+            if (img.complete) return Promise.resolve();
+            return new Promise<void>((resolve) => {
+              img.addEventListener("load", () => resolve(), { once: true });
+              img.addEventListener("error", () => resolve(), { once: true });
+            });
+          }),
+        );
+      });
+    } catch {}
 
     const pdf = await page.pdf(pdfOptions);
     return Buffer.from(pdf);

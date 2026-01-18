@@ -239,7 +239,7 @@ td.priority {
 
 td.offering {
     background: #fff;
-    padding: 0 12px;
+    padding: 0 12px !important;
 }
 
 
