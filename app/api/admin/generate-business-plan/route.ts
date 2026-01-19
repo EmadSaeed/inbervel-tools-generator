@@ -27,11 +27,14 @@ export async function POST(req: NextRequest) {
     const dto = await buildBusinessPlanTemplateDto(email);
     const html = await renderBusinessPlanTemplate(dto);
 
-    const pdfBuffer = await htmlToPdfBuffer(html, { title: "Business Plan" });
+    const pdfBuffer = await htmlToPdfBuffer(html, {
+      title: "Business Plan",
+      subtitle: dto?.final?.CompanyName ?? "Company",
+    });
 
     // ✅ BusinessPlanTemplateDto does not have companyName, so use dto.final.CompanyName
     const companyName = safeFilenamePart(
-      String(dto?.final?.CompanyName ?? "Company")
+      String(dto?.final?.CompanyName ?? "Company"),
     );
 
     const filename = `${companyName} Business Plan.pdf`;
