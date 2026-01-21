@@ -763,12 +763,43 @@ table#core-value-table {
     padding: 18px 14px;
 }
 
+.pricing thead tr.address,
+.pricing thead tr.phone-email {
+    background: var(--light-green);
+    font-weight: 400;
+    text-align: center;
+}
+
+.pricing thead tr.phone-email td {
+    padding: 0;
+    /* optional: lets the split div control spacing */
+}
+
+.phone-email-split {
+    display: flex;
+    width: 100%;
+}
+
+.phone-email-split>.phone,
+.phone-email-split>.email {
+    width: 50%;
+    text-align: center;
+    padding: 12px 14px;
+    /* match your cell padding */
+    box-sizing: border-box;
+}
+
+.phone-email-split>.email {
+    border-left: 1.5px solid #111;
+    /* mimic the table's internal border */
+}
+
 /* Subtitle row */
 .pricing thead tr.subtitle th {
-    background: #fff;
-    color: #000;
-    font-weight: 400;
-    font-size: 14px;
+    background: var(--dark-green);
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
     text-align: center;
     padding: 8px 14px;
 }
@@ -792,6 +823,12 @@ table#core-value-table {
 .pricing tbody tr.alt td {
     background: var(--alt-green);
 }
+
+/* .pricing tbody tr,
+.pricing tbody tr td {
+    height: 15px !important;
+    padding: 5px !important;
+} */
 
 /* Footer note */
 .pricing tfoot td {
