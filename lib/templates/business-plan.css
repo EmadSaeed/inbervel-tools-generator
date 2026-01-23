@@ -765,9 +765,13 @@ table#core-value-table {
 
 .pricing thead tr.address,
 .pricing thead tr.phone-email {
-    background: var(--light-green);
+    background: #cbfab9;
     font-weight: 400;
     text-align: center;
+}
+
+.pricing tbody tr {
+    background: #cbfab9;
 }
 
 .pricing thead tr.phone-email td {
@@ -806,7 +810,7 @@ table#core-value-table {
 
 /* Column headers */
 .pricing thead tr.head th {
-    background: var(--light-green);
+    background: rgb(182, 182, 182);
     color: #000;
     font-weight: 800;
     text-align: center;
