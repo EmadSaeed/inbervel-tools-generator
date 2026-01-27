@@ -6,7 +6,8 @@
 
 :root {
     --dark-green: #0C2218;
-    --light-green: #A6FE84;
+    --logo--light-green: #A6FE84;
+    --light-green: #dff7d6;
     --pale-green: #dff7d6;
     --grid: #111;
 }
@@ -56,7 +57,7 @@ body {
 }
 
 .coverTitleBlock {
-    background-color: var(--light-green);
+    background-color: var(--logo--light-green);
     height: 75mm;
     width: 100%;
     margin-top: 12mm;
@@ -74,7 +75,7 @@ body {
 }
 
 .dateBlock {
-    background-color: var(--light-green);
+    background-color: var(--logo--light-green);
     height: 50mm;
     width: 100%;
     margin-top: 0 !important;
@@ -116,7 +117,7 @@ body {
     height: 29mm;
     width: 100%;
     margin-top: 0 !important;
-    border-left: 6mm solid var(--light-green);
+    border-left: 6mm solid var(--logo--light-green);
     display: flex;
     align-items: center;
     justify-content: space-around;
