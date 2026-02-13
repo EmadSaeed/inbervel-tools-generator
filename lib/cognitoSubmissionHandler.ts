@@ -116,7 +116,7 @@ export async function cognitoSubmissionHandler(payload: any) {
   let companyLogoDataUri: string | null = null;
 
   // Only for the FINAL form (24) store logo permanently
-  if (data.formId === "24") {
+  if (data.formId === "29") {
     const logo = getCompanyLogo(payload);
 
     if (logo?.fileUrl?.startsWith("http")) {

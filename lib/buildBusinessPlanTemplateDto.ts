@@ -41,7 +41,7 @@ export async function buildBusinessPlanTemplateDto(
   const getRow = (formId: string) => rows.find((r) => r.formId === formId)!;
   const getPayload = (formId: string) => getRow(formId).payload as any;
 
-  const finalSubmission = getRow("24");
+  const finalSubmission = getRow("29");
 
   return {
     planTitle: "Business Plan",
@@ -49,7 +49,7 @@ export async function buildBusinessPlanTemplateDto(
     logoUrl: finalSubmission.companyLogoDataUri ?? "",
     riskChartDataUri: "", // injected later in render step
 
-    final: getPayload("24"),
+    final: getPayload("29"),
     offerings: getPayload("14"),
     advantage: getPayload("11"),
     sectors: getPayload("15"),
