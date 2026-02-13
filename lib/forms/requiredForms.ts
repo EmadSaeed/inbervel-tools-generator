@@ -23,6 +23,11 @@ export const BUSINESS_PLAN_FORMS = [
     title: "Questionnaire to Calculate Labour Rates Card",
   },
   {
+    formId: "39",
+    key: "risks",
+    title: "How to identify risks and plan to avoid them",
+  },
+  {
     formId: "25",
     key: "financial",
     title: "How to Forecast Your Financial Performance",

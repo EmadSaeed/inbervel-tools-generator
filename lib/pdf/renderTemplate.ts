@@ -3,6 +3,29 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import Handlebars from "handlebars";
 
+function extToMime(ext: string) {
+  switch (ext.toLowerCase()) {
+    case ".png":
+      return "image/png";
+    case ".jpg":
+    case ".jpeg":
+      return "image/jpeg";
+    case ".webp":
+      return "image/webp";
+    case ".svg":
+      return "image/svg+xml";
+    default:
+      return "application/octet-stream";
+  }
+}
+
+async function fileToDataUri(relativePathFromRoot: string) {
+  const abs = path.join(process.cwd(), relativePathFromRoot);
+  const buf = await fs.readFile(abs);
+  const mime = extToMime(path.extname(abs));
+  return `data:${mime};base64,${buf.toString("base64")}`;
+}
+
 function parseToDate(value: unknown): Date | null {
   if (!value) return null;
   if (value instanceof Date)
@@ -22,7 +45,6 @@ function formatDateImpl(value: unknown, format?: string) {
 
   const fmt = String(format ?? "").trim();
 
-  // Minimal formats you actually used in the template
   if (fmt === "MMMM yyyy") {
     return new Intl.DateTimeFormat("en-GB", {
       month: "long",
@@ -38,7 +60,6 @@ function formatDateImpl(value: unknown, format?: string) {
     }).format(d);
   }
 
-  // Fallback: sensible default
   return new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
     month: "long",
@@ -46,7 +67,6 @@ function formatDateImpl(value: unknown, format?: string) {
   }).format(d);
 }
 
-// Register helpers once
 Handlebars.registerHelper("formatDate", formatDateImpl);
 
 function toNumber(value: unknown): number | null {
@@ -89,10 +109,7 @@ Handlebars.registerHelper(
           : 0;
 
     const safeDecimals = Number.isFinite(d) ? Math.max(0, Math.min(6, d)) : 0;
-
-    // value is expected as ratio (0.288 -> 28.8%)
     const pct = n * 100;
-
     return `${pct.toFixed(safeDecimals)}%`;
   },
 );
@@ -106,6 +123,16 @@ Handlebars.registerHelper("formatBritishDate", (value: unknown) => {
   const yyyy = d.getFullYear();
 
   return `${dd}-${mm}-${yyyy}`;
+});
+
+Handlebars.registerHelper("riskBG", (value: unknown) => {
+  const v = String(value ?? "")
+    .trim()
+    .toUpperCase();
+  if (v === "L") return "low";
+  if (v === "M") return "medium";
+  if (v === "H") return "high";
+  return "";
 });
 
 export async function renderBusinessPlanTemplate(dto: any) {
@@ -122,6 +149,9 @@ export async function renderBusinessPlanTemplate(dto: any) {
     "business-plan.css",
   );
 
+  // ✅ convert local public asset to data URI so Puppeteer can render it
+  const riskChartDataUri = await fileToDataUri("public/risk-chart.png");
+
   const [templateSource, css] = await Promise.all([
     fs.readFile(templatePath, "utf8"),
     fs.readFile(cssPath, "utf8"),
@@ -129,6 +159,9 @@ export async function renderBusinessPlanTemplate(dto: any) {
 
   const template = Handlebars.compile(templateSource, { strict: true });
 
-  // Inject CSS expected by {{{css}}}
-  return template({ ...dto, css });
+  return template({
+    ...dto,
+    css,
+    riskChartDataUri, // ✅ now {{riskChartDataUri}} works
+  });
 }

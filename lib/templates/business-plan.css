@@ -9,6 +9,13 @@
     --light-green: #A6FE84;
     --pale-green: #dff7d6;
     --grid: #111;
+
+    --risk-high: #f0180a;
+    --risk-medium: #f4b400;
+    --risk-low: #8bc34a;
+
+    --meta-grey: #8b8b8b;
+    --paper: #f5f5f5;
 }
 
 html,
@@ -661,6 +668,182 @@ table#core-value-table {
     line-height: 1.35;
 }
 
+
+/**************************************** Risk Register *********************************************/
+
+.risk-register {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* keeps columns aligned within page */
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid var(--grid);
+}
+
+.risk-register th,
+.risk-register td {
+    border: 1.5px solid var(--grid);
+    padding: 8px 10px;
+    font-size: 12px;
+    /* slightly smaller for PDF */
+    vertical-align: top;
+    overflow-wrap: anywhere;
+    /* prevents overflow */
+    word-break: break-word;
+}
+
+/* Column widths as percentages (PDF-safe) */
+.risk-register col.col-risk {
+    width: 16%;
+}
+
+.risk-register col.col-details {
+    width: 30%;
+}
+
+.risk-register col.col-small {
+    width: 4.5%;
+}
+
+.risk-register col.col-controls {
+    width: 30%;
+}
+
+/* Header bars */
+.risk-register .title {
+    background: var(--dark-green);
+    color: #fff;
+    font-weight: 800;
+    font-size: 26px;
+    text-align: center;
+    padding: 14px 10px;
+    letter-spacing: .5px;
+}
+
+.risk-register .subtitle {
+    background: var(--light-green);
+    color: #000;
+    font-weight: 800;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px 10px;
+}
+
+.risk-register .meta-bar td {
+    background: var(--meta-grey);
+    height: 18px;
+    padding: 0;
+}
+
+/* Meta rows with boxed values */
+.risk-register .meta td {
+    background: var(--paper);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 12px;
+}
+
+.risk-register .meta .pair {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.risk-register .meta .label {
+    white-space: nowrap;
+}
+
+.risk-register .meta .box {
+    display: inline-block;
+    min-width: 140px;
+    padding: 6px 10px;
+    background: #fff;
+    border: 2px solid #000;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Table headings */
+.risk-register .head th,
+.risk-register .subhead th {
+    background: #fff;
+    font-weight: 800;
+    text-align: center;
+}
+
+.risk-register ul {
+    margin: 0;
+    padding-left: 16px;
+}
+
+/* Input styling for S/L */
+.risk-register input[type="number"] {
+    width: 100%;
+    border: 0;
+    outline: none;
+    text-align: center;
+    font-weight: 700;
+    font-size: 10px;
+    background: transparent;
+    padding: 4px 0;
+    -moz-appearance: textfield;
+}
+
+.risk-register input[type="number"]::-webkit-outer-spin-button,
+.risk-register input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.risk-register .t-score {
+    text-align: center;
+    font-weight: 700;
+    font-size: 10px;
+    padding: 12px 2px;
+}
+
+.risk-register .risk-level {
+    text-align: center;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .5px;
+    padding: 12px 2px;
+}
+
+.risk-register .risk-level.high {
+    background: var(--risk-high);
+    color: #000;
+}
+
+.risk-register .risk-level.medium {
+    background: var(--risk-medium);
+    color: #000;
+}
+
+.risk-register .risk-level.low {
+    background: var(--risk-low);
+    color: #000;
+}
+
+.risk-register .risk-name {
+    font-weight: 800;
+    font-size: 13px;
+}
+
+/* Print/PDF niceties */
+@media print {
+    .risk-register {
+        page-break-inside: auto;
+    }
+
+    .risk-register tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}
+
 /**************************************** SWOT *********************************************/
 .swot {
     width: 100%;
@@ -878,7 +1061,7 @@ table#core-value-table {
     color: #fff;
     font-weight: 800;
     font-size: 30px;
-    text-align: centre;
+    text-align: center;
     padding: 16px 12px;
 }
 
@@ -887,7 +1070,7 @@ table#core-value-table {
     background: var(--dark-green);
     color: #fff;
     font-weight: 800;
-    text-align: centre;
+    text-align: center;
     padding: 10px 8px;
     font-size: 14px;
 }
@@ -902,7 +1085,7 @@ table#core-value-table {
     background: #fff;
     color: #000;
     font-weight: 400;
-    text-align: centre;
+    text-align: center;
     font-size: 13px;
     font-style: italic;
     padding: 8px 8px;
@@ -940,7 +1123,7 @@ table#core-value-table {
 /* Values */
 .financial-forecast td.val {
     background: #fff;
-    text-align: centre;
+    text-align: center;
     vertical-align: middle;
     height: 34px;
     text-align: center;

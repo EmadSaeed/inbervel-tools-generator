@@ -64,66 +64,95 @@
 **************************************** Our Business ************************************************
 ****************************************************************************************************}}
     <div class="page pages">
+      <h2>Introduction</h2>
+      <p>This plan is the result of a structured review of our market, our
+        strengths, and the best routes to sustainable growth. It captures our
+        chosen offerings, the sectors we will target for maximum return, and the
+        specific activities we will prioritise to generate demand. It then turns
+        that direction into execution: clear objectives across finance,
+        operations, sales & marketing and people, supported by 90-day
+        priorities, performance measures, and a forward financial forecast</p>
       <h2>Our Business</h2>
       <p>{{final.TheBusiness}}</p>
-      <h2>Our lead offerings</h2>
-      <p>{{final.OurPrimaryOfferings}}</p>
+      <h2>Our Vision</h2>
+      <p><strong>This is our future!</strong><br />
+        “{{final.OurVision}}”
+      </p>
     </div>
-
-    <table class="priority-table" aria-label="Our Lead Offerings Priority List">
-      <colgroup>
-        <col class="col-priority" />
-        <col class="col-offering" />
-      </colgroup>
-
-      <thead>
-        <tr class="title-row">
-          <th colspan="2">OUR LEAD OFFERINGS PRIORITY LIST</th>
-        </tr>
-        <tr class="col-head">
-          <th>PRIORITY</th>
-          <th>LEAD OFFERING</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td class="priority">1</td>
-          <td
-            class="offering"
-          >{{offerings.YourOfferings.Results._1Offering}}</td>
-        </tr>
-        <tr>
-          <td class="priority">2</td>
-          <td
-            class="offering"
-          >{{offerings.YourOfferings.Results._2Offering}}</td>
-        </tr>
-        <tr>
-          <td class="priority">3</td>
-          <td
-            class="offering"
-          >{{offerings.YourOfferings.Results._3Offering}}</td>
-        </tr>
-        <tr>
-          <td class="priority">4</td>
-          <td
-            class="offering"
-          >{{offerings.YourOfferings.Results._4Offering}}</td>
-        </tr>
-      </tbody>
-    </table>
-
     <div class="page-break"></div>
+    {{!**********************************************************************************************
+**************************************** Our lead offerings ***************************************************
+****************************************************************************************************}}
+
+    <div class="page pages">
+      <h2>Our lead offerings</h2>
+      <p>The following lead offerings are our core revenue drivers. They’re the
+        services we can deliver confidently right now, in markets where
+        customers actively buy and where we can price profitably. This focus
+        helps us avoid spreading ourselves thin and keeps delivery efficient and
+        repeatable.</p>
+
+      <table
+        class="priority-table"
+        aria-label="Our Lead Offerings Priority List"
+      >
+        <colgroup>
+          <col class="col-priority" />
+          <col class="col-offering" />
+        </colgroup>
+
+        <thead>
+          <tr class="title-row">
+            <th colspan="2">OUR LEAD OFFERINGS PRIORITY LIST</th>
+          </tr>
+          <tr class="col-head">
+            <th>PRIORITY</th>
+            <th>LEAD OFFERING</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="priority">1</td>
+            <td
+              class="offering"
+            >{{offerings.YourOfferings.Results._1Offering}}</td>
+          </tr>
+          <tr>
+            <td class="priority">2</td>
+            <td
+              class="offering"
+            >{{offerings.YourOfferings.Results._2Offering}}</td>
+          </tr>
+          <tr>
+            <td class="priority">3</td>
+            <td
+              class="offering"
+            >{{offerings.YourOfferings.Results._3Offering}}</td>
+          </tr>
+          <tr>
+            <td class="priority">4</td>
+            <td
+              class="offering"
+            >{{offerings.YourOfferings.Results._4Offering}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-break"></div>
+
     {{!**********************************************************************************************
 **************************************** Our Edge ***************************************************
 ****************************************************************************************************}}
 
     <div class="page pages">
-
       <h2>Our Edge</h2>
       <p><strong>We have an Edge, this is why we are different</strong><br />
-        {{final.Edge}}
+        We’ve been deliberate about building real points of
+        difference—advantages that matter to customers and solve the problems
+        they actually care about. These differentiators are designed to increase
+        trust, justify our pricing, and make us the obvious choice. They’re
+        listed below
       </p>
       <br />
       <table id="edge-table">
@@ -163,6 +192,13 @@
     <div class="page pages">
 
       <h2>Target Clients</h2>
+      <p>Targeting the right clients is critical to support our profitable
+        growth. We’ve assessed each sector based on how well it fits our
+        strengths, what it takes to win and deliver (accreditations, compliance,
+        reporting, service levels), and whether it supports healthy margins. We
+        have also considered repeat potential and ease of operation. The sectors
+        that score best are our priority targets and are shown below.
+      </p>
 
       <table id="sector-table">
         <!-- Fixed column widths -->
@@ -184,7 +220,7 @@
             <th>PRIORITY</th>
             <th>SECTOR/CLIENT<br />TYPE</th>
             <th>COMPANIES</th>
-            <th>MY OFFERINGS TO<br />PROMOTE THEM</th>
+            <th>OFFERINGS WE WILL<br />PROMOTE TO THEM</th>
             <th>FOCUS<br />SCORE</th>
           </tr>
         </thead>
@@ -218,8 +254,6 @@
         </tbody>
       </table>
       <br />
-      <p>{{final.TargetClients}}
-      </p>
 
     </div>
     <div class="page-break"></div>
@@ -231,6 +265,13 @@
     <div class="page pages">
       <h2>Our Brand</h2>
       <h3 class="sub-heading">What a client can expect</h3>
+      <p>Great services and competitive pricing are not enough on their own. We
+        recognise the importance of packaging what we do into a clear brand that
+        builds trust and makes the buying decision easier. Our brand will be
+        built around a core set of values that guide our behaviours, set
+        expectations, and create a consistent client experience — so the right
+        customers recognise us quickly and choose us with confidence.</p>
+      <br />
       <div class="core-value">
         <div class="core-value__title">OUR CORE VALUES</div>
 
@@ -264,10 +305,6 @@
           </tbody>
         </table>
       </div>
-      <h2>Our Vision</h2>
-      <p><strong>This is our future!</strong><br />
-        “{{final.OurVision}}”
-      </p>
     </div>
 
     <div class="page-break"></div>
@@ -277,6 +314,12 @@
 
     <div class="page pages">
       <h2>Sales & Marketing Strategy</h2>
+      <p>We have many ways to market the business, but not all channels reach
+        the right decision-makers in our target sectors. To avoid wasted time
+        and spend, we’ve reviewed our options and scored each activity based on
+        likely reach, the chance our ideal clients will see or be influenced by
+        it, and overall cost. The list below shows the methods we will
+        prioritise in order of likely return on investment.</p>
       <table class="sales" aria-label="Sales and Marketing Plan">
         <colgroup>
           <col class="col-no" />
@@ -357,6 +400,13 @@
 
     <div class="page pages">
       <h2>Our Objectives and the Strategies to make them real</h2>
+      <p>This section details how we will turn our ambitions into reality. We’ve
+        structured this plan around four pillars that influence whether a
+        business succeeds: Finance, Operations, Sales & Marketing, and People.
+        For each pillar we’ve identified the main barriers to performance, set
+        clear objectives, and defined practical strategies to achieve them.
+        These actions provide focus, create accountability, and keep the
+        business moving in the right direction, with measurable progress.</p>
       <br />
       <table class="finance" aria-label="Finance section">
         <colgroup>
@@ -398,7 +448,12 @@
         </tbody>
       </table>
       <br />
-      <br />
+    </div>
+    <div class="page-break"></div>
+
+    {{! ********************************************************** }}
+
+    <div class="page pages">
       <table class="finance" aria-label="OPERATIONS section">
         <colgroup>
           <col class="col-num" />
@@ -438,13 +493,9 @@
             >{{objectives.Pillar2Operations.Strategy4}}</td></tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="page-break"></div>
-
-    {{! ********************************************************** }}
-
-    <div class="page pages">
+      <br />
+      <br />
+      <br />
       <table class="finance" aria-label="SALES & MARKETING section">
         <colgroup>
           <col class="col-num" />
@@ -484,6 +535,13 @@
             >{{objectives.Pillar3SalesMarketing.Strategy4}}</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="page-break"></div>
+
+    {{! ********************************************************** }}
+
+    <div class="page pages">
+
       <br />
       <br />
       <table class="finance" aria-label="PEOPLE section">
@@ -535,6 +593,11 @@
 
     <div class="page pages">
       <h2>Next 90 Days</h2>
+      <p>We recognise we can’t implement everything at once. To build momentum
+        fast, we’ve identified one lead strategy under each pillar (Finance,
+        Operations, Sales & Marketing, and People) that will deliver the biggest
+        impact in the next 90 days. This creates focus, avoids distraction, and
+        ensures we make measurable progress quickly.</p>
       <table class="next-90-days" aria-label="The next 90 days big moves">
         <colgroup>
           <col class="col-strategy" />
@@ -607,6 +670,11 @@
 
     <div class="page pages">
       <h2>KPIs (Key Performance Indicators)</h2>
+      <p>We’ve completed a full financial review and built a model that includes
+        our overheads, direct costs, and pricing assumptions. This gives us a
+        clear view of what the business must achieve to hit its profit goals.
+        The KPIs below translate that analysis into measurable targets that
+        directly drive the outcomes we need.</p>
       <table class="kpis" aria-label="KPIs and Performance Management">
         <colgroup>
           <col class="col-measures" />
@@ -681,42 +749,309 @@
 ****************************************************************************************************}}
 
     <div class="page pages">
-
       <h2>Risks and Mitigations</h2>
-      <p><strong>Financial Levers That Drive Our Results</strong><br />
-        Our financial performance is driven by a few key levers that have an
-        outsized impact on profitability and long-term growth. Small
-        improvements in these areas compound quickly over time, strengthening
-        margins and supporting sustainable expansion.
-      </p>
-      <p><strong>1. Pricing Discipline</strong><br />
-        Even a small increase in average job value—such as a 3–5% price
-        adjustment or better upselling of proofing and bio-clean services—can
-        significantly improve revenue without increasing workload.
-      </p>
-      <p><strong>2. Cost Control Through Subcontractor Efficiency</strong><br />
-        Maintaining strong relationships with subcontractors and improving
-        operational efficiency (for example, reducing unnecessary callouts or
-        downtime by 10%) directly increases our gross margin.
-      </p>
-      <p><strong>3. Improved Job Scheduling & Utilisation</strong><br />
-        Optimising schedules to reduce travel time and maximise daily job
-        count—improving utilisation by even one extra job per week—creates
-        substantial revenue uplift across the year.
-      </p>
-      <p><strong>4. Higher Contract Retention & Renewal Rates</strong><br />
-        A small rise in client retention (e.g., from 80% to 85%) dramatically
-        boosts recurring income and lowers acquisition costs, contributing to
-        financial stability.
-      </p>
-      <p><strong>5. Reducing Material & Waste Costs</strong><br />
-        Simple measures like negotiating better rates on proofing materials or
-        reducing wastage by 5–10% consistently improve profit margins on every
-        job.
-      </p>
+      <p>This section sets out the risks that could prevent the business from
+        delivering this plan, along with the steps we will take to manage them.
+        We have scored each risk based on likelihood and potential impact to
+        ensure we prioritise the most significant threats. Mitigation actions
+        have been identified to reduce the likelihood, limit the impact, and
+        strengthen business continuity. By planning for risk upfront, we
+        increase resilience and protect future profitability.</p>
+      <table class="risk-register" aria-label="Risk Register for the Business">
+        <colgroup>
+          <col class="col-risk" />
+          <col class="col-details" />
+          <col class="col-small" />
+          <col class="col-small" />
+          <col class="col-small" />
+          <col class="col-small" />
+          <col class="col-controls" />
+          <col class="col-small" />
+          <col class="col-small" />
+          <col class="col-small" />
+          <col class="col-small" />
+        </colgroup>
 
+        <thead>
+          <tr>
+            <th colspan="11" class="title">{{risks.CompanyName}}</th>
+          </tr>
+          <tr>
+            <th colspan="11" class="subtitle">Risk Register for the Business</th>
+          </tr>
+          <tr class="meta-bar">
+            <td colspan="11"></td>
+          </tr>
+
+          <tr class="meta">
+            <td colspan="6">
+              <div class="pair">
+                <span class="label">Date of Assessment:</span>
+                <span class="box">{{risks.DateCompleted}}</span>
+              </div>
+            </td>
+            <td colspan="5">
+              <div class="pair">
+                <span class="label">Review Date:</span>
+                <span class="box">{{risks.ReviewDate}}</span>
+              </div>
+            </td>
+          </tr>
+
+          <tr class="meta">
+            <td colspan="6">
+              <div class="pair">
+                <span class="label">Assessment by:</span>
+                <span class="box">{{risks.Name.FirstAndLast}}</span>
+              </div>
+            </td>
+            <td colspan="5">
+              <div class="pair">
+                <span class="label">Position</span>
+                <span class="box">{{risks.Position}}</span>
+              </div>
+            </td>
+          </tr>
+          {{!-- insert full width image from public folder risk-chart.png --}}
+          <tr>
+            <td colspan="11">
+              <img src="{{riskChartDataUri}}" alt="Risk Chart" style="width:100%; display:block;" />
+
+            </td>
+          </tr>
+          <tr class="meta-bar">
+            <td colspan="11"></td>
+          </tr>
+
+          <tr class="head">
+            <th rowspan="2">Risk to Business</th>
+            <th rowspan="2">Risk Details</th>
+            <th colspan="4" class="group-head">Risk Rating without controls</th>
+            <th rowspan="2">Control Measures</th>
+            <th colspan="4" class="group-head">Risk Rating with Controls</th>
+          </tr>
+          <tr class="subhead">
+            <th>S</th>
+            <th>L</th>
+            <th>T</th>
+            <th>R</th>
+            <th>S</th>
+            <th>L</th>
+            <th>T</th>
+            <th>R</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Row 1 -->
+          <tr class="risk-row">
+            <td class="risk-name">Finance &amp; Cash</td>
+            <td>
+              <ul>
+                <li>Insufficient cash availability</li>
+                <li>Inability to meet repayments of loan</li>
+                <li>Not having money to VAT or PAYE on time</li>
+                <li>Failure to convert invoice to cash; clients not paying on
+                  time or at all</li>
+              </ul>
+            </td>
+
+            <!-- Without controls -->
+            <td><input
+                class="s-wo"
+                type="number"
+                value="{{risks._1.S_Value}}"
+              /></td>
+            <td><input
+                class="l-wo"
+                type="number"
+                value="{{risks._1.L1_Value}}"
+              /></td>
+            <td class="t-score t-wo">{{risks._1.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._1.R1}}">{{risks._1.R1}}</td>
+            <td>
+              {{risks._1.CMList}}
+            </td>
+
+            <!-- With controls -->
+            <td><input
+                class="s-w"
+                type="number"
+                value="{{risks._1.S_Value}}"
+              /></td>
+            <td><input
+                class="l-w"
+                type="number"
+                value="{{risks._1.L2_Value}}"
+              /></td>
+            <td class="t-score t-w">{{risks._1.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._1.R2}}">{{risks._1.R2}}</td>
+          </tr>
+
+          <!-- Row 2 -->
+          <tr class="risk-row">
+            <td class="risk-name">Customers</td>
+            <td>
+              <ul>
+                <li>Failure to meet clients KPIs</li>
+                <li>Complaints from customers</li>
+                <li>Loss of customers</li>
+                <li>Clients reduce or stop spending</li>
+              </ul>
+            </td>
+
+            <td><input class="s-wo" type="number" value="{{risks._2.S_Value}}" /></td>
+              </td>
+            <td><input
+                class="l-wo"
+                type="number"
+                value="{{risks._2.L1_Value}}"
+              /></td>
+            <td class="t-score t-wo">{{risks._2.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._2.R1}}">{{risks._2.R1}}</td>
+
+            <td>
+              {{risks._2.CMList}}
+            </td>
+
+            <td><input class="s-w" type="number" value="{{risks._2.S_Value}}" /></td>
+            <td><input class="l-w" type="number" value="{{risks._2.L2_Value}}" /></td>
+            <td class="t-score t-w">{{risks._2.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._2.R2}}">{{risks._2.R2}}</td>
+          </tr>
+
+          <!-- Row 3 -->
+          <tr class="risk-row">
+            <td class="risk-name">Suppliers</td>
+            <td>
+              <ul>
+                <li>Inability or failure to supply materials</li>
+                <li>Supplying sub standard non-compliant product</li>
+                <li>Price rises</li>
+              </ul>
+            </td>
+
+            <td><input class="s-wo" type="number" value="{{risks._3.S_Value}}" /></td>
+            <td><input class="l-wo" type="number" value="{{risks._3.L1_Value}}" /></td>
+            <td class="t-score t-wo">{{risks._3.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._3.R1}}">{{risks._3.R1}}</td>
+
+            <td>
+              {{risks._3.CMList}}
+            </td>
+
+            <td><input class="s-w" type="number" value="{{risks._3.S_Value}}" /></td>
+            <td><input class="l-w" type="number" value="{{risks._3.L2_Value}}" /></td>
+            <td class="t-score t-w">{{risks._3.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._3.R2}}">{{risks._3.R2}}</td>
+          </tr>
+
+          <!-- Row 4 -->
+          <tr class="risk-row">
+            <td class="risk-name">Employees</td>
+            <td>
+              <ul>
+                <li> Insufficient staff to meet work flow.</li>
+                <li>sickness, poor performing staff.</li>
+                <li>lack of motivation resulting in poor productivity.</li>
+              </ul>
+            </td>
+
+            <td><input class="s-wo" type="number" value="{{risks._4.S_Value}}" /></td>
+            <td><input class="l-wo" type="number" value="{{risks._4.L1_Value}}" /></td>
+            <td class="t-score t-wo">{{risks._4.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._4.R1}}">{{risks._4.R1}}</td>
+
+            <td>
+              {{risks._4.CMList}}
+            </td>
+
+            <td><input class="s-w" type="number" value="{{risks._4.S_Value}}" /></td>
+            <td><input class="l-w" type="number" value="{{risks._4.L2_Value}}" /></td>
+            <td class="t-score t-w">{{risks._4.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._4.R2}}">{{risks._4.R2}}</td>
+          </tr>
+          <!-- Row 5 -->
+          <tr class="risk-row">
+            <td class="risk-name">Compliance &amp; Legal</td>
+            <td>
+              <ul>
+                <li>Health and safety or environmental enforcement.</li>
+                <li>Failure to maintain accreditations or memberships.</li>
+              </ul>
+            </td>
+
+            <td><input class="s-wo" type="number" value="{{risks._5.S_Value}}" /></td>
+            <td><input class="l-wo" type="number" value="{{risks._5.L1_Value}}" /></td>
+            <td class="t-score t-wo">{{risks._5.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._5.R1}}">{{risks._5.R1}}</td>
+
+            <td>
+              {{risks._5.CMList}}
+            </td>
+
+            <td><input class="s-w" type="number" value="{{risks._5.S_Value}}" /></td>
+            <td><input class="l-w" type="number" value="{{risks._5.L2_Value}}" /></td>
+            <td class="t-score t-w">{{risks._5.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._5.R2}}">{{risks._5.R2}}</td>
+          </tr>
+          <!-- Row 6 -->
+          <tr class="risk-row">
+            <td class="risk-name">Technology &amp; Data</td>
+            <td>
+              <ul>
+                <li>Cyber-attack</li>
+                <li>Virus</li>
+                <li>Hard drive failure</li>
+                <li>Loss of data or systems</li>
+                <li>Data stolen</li>
+              </ul>
+            </td>
+
+            <td><input class="s-wo" type="number" value="{{risks._6.S_Value}}" /></td>
+            <td><input class="l-wo" type="number" value="{{risks._6.L1_Value}}" /></td>
+            <td class="t-score t-wo">{{risks._6.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._6.R1}}">{{risks._6.R1}}</td>
+
+            <td>
+              {{risks._6.CMList}}
+            </td>
+
+            <td><input class="s-w" type="number" value="{{risks._6.S_Value}}" /></td>
+            <td><input class="l-w" type="number" value="{{risks._6.L2_Value}}" /></td>
+            <td class="t-score t-w">{{risks._6.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._6.R2}}">{{risks._6.R2}}</td>
+          </tr>
+          <!-- Row 7 -->
+          <tr class="risk-row">
+            <td class="risk-name">External</td>
+            <td>
+              <ul>
+                <li>Competition.</li>
+                <li>Regulation changes.</li>
+                <li>Economic shocks</li>
+              </ul>
+            </td>
+
+            <td><input class="s-wo" type="number" value="{{risks._7.S_Value}}" /></td>
+            <td><input class="l-wo" type="number" value="{{risks._7.L1_Value}}" /></td>
+            <td class="t-score t-wo">{{risks._7.T1}}</td>
+            <td class="risk-level r-wo {{riskBG risks._7.R1}}">{{risks._7.R1}}</td>
+
+            <td>
+              {{risks._7.CMList}}
+            </td>
+
+            <td><input class="s-w" type="number" value="{{risks._7.S_Value}}" /></td>
+            <td><input class="l-w" type="number" value="{{risks._7.L2_Value}}" /></td>
+            <td class="t-score t-w">{{risks._7.T2}}</td>
+            <td class="risk-level r-w {{riskBG risks._7.R2}}">{{risks._7.R2}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="page-break"></div>
+
     {{!**********************************************************************************************
 **************************************** SWOT ***************************************************
 ****************************************************************************************************}}
@@ -724,12 +1059,16 @@
     <div class="page pages">
 
       <h2>SWOT</h2>
-      <table class="swot" aria-label="SWOT analysis grid">
-        <colgroup>
-          <col />
-          <col />
-        </colgroup>
-
+      <p>Before building this plan, we completed a structured discovery exercise
+        to understand the business as it really is. We gathered input from a
+        broad range of people involved, reviewed performance drivers, and
+        captured honest observations on what helps and hinders success. The SWOT
+        below summarises those findings and has directly shaped the decisions
+        and priorities in this plan.</p>
+      <br />
+      <br />
+      <!-- Table 1: Strengths / Weaknesses -->
+      <table class="swot" aria-label="SWOT analysis grid - internal factors">
         <thead>
           <tr class="title">
             <th colspan="2">{{final.CompanyName}} - SWOT ANALYSIS GRID</th>
@@ -739,7 +1078,6 @@
             <th class="weaknesses">WEAKNESSES</th>
           </tr>
         </thead>
-
         <tbody>
           <tr class="entry"><td>{{swot.SWOT.S1}}</td><td
             >{{swot.SWOT.W1}}</td></tr>
@@ -754,7 +1092,18 @@
           <tr class="entry"><td>{{swot.SWOT.S6}}</td><td
             >{{swot.SWOT.W6}}</td></tr>
         </tbody>
+      </table>
+    </div>
+    <div class="page-break"></div>
+    {{! ******************************************************* }}
+    <div class="page pages">
+
+      <!-- Table 2: Opportunities / Threats -->
+      <table class="swot" aria-label="SWOT analysis grid - external factors">
         <thead>
+          <tr class="title">
+            <th colspan="2">{{final.CompanyName}} - SWOT ANALYSIS GRID</th>
+          </tr>
           <tr class="sections">
             <th class="opportunities">OPPORTUNITIES</th>
             <th class="threats">THREATS</th>
@@ -785,7 +1134,11 @@
     <div class="page pages">
 
       <h2>Pricing</h2>
-
+      <p>Below is our schedule of rates. These prices are built into the
+        financial model that underpins our KPIs and profit targets, so we know
+        the business works when they are applied consistently. We will maintain
+        strict pricing discipline by costing every job on a time-plus-materials
+        basis and using this table as the standard for quoting and invoicing.</p>
       <table class="pricing" aria-label="Standard labour rates pricing table">
         <colgroup>
           <col class="col-desc" />
@@ -859,25 +1212,23 @@
     <div class="page-break"></div>
 
     {{!**********************************************************************************************
-**************************************** Financial-Forecast P and L ***************************************************
-****************************************************************************************************}}
-
-    <div class="page pages">
-
-      <h2>Financial-Forecast P and L</h2>
-
-      <p style="border: 1px solid #000; padding: 10px;">
-        {{final.FinancialsForecastPL}}
-      </p>
-
-    </div>
-    <div class="page-break"></div>
-    {{!**********************************************************************************************
 **************************************** My Financial Forecast for Next 12 Months -1 ***************************************************
 ****************************************************************************************************}}
 
     <div class="page pages">
-
+      <h2>Financial-Forecast P and L</h2>
+      <p>The Profit & Loss table below shows our current performance and the
+        improvement we expect as this plan is implemented. The current and
+        forecast columns show where we are and the direction of travel; the
+        budget columns shows our financial ambition. The “Achievable with
+        current resources” figures represent a full-productivity scenario using
+        today’s capacity. The “Based on revenue needed to achieve targets”
+        figures then set out the revenue level needed to achieve our planned
+        profit, along with the associated costs of delivery.</p>
+    </div>
+    <div class="page-break"></div>
+    {{! ********************************************* }}
+    <div class="page pages">
       <table class="financial-forecast" aria-label="Financial forecast table 1">
         <colgroup>
           <col class="col-item" />
